@@ -22,6 +22,16 @@ class ResPartnerBank(models.Model):
         help='銀行名・支店名で検索して選択すると各コードを自動入力する'
     )
     
+    # 互換用エイリアス（古いビュー参照対策）
+    jp_account_number = fields.Char(
+        string='口座番号',
+        size=7,
+        related='acc_number',
+        readonly=False,
+        store=True,
+        help='互換用。標準の口座番号と同一。'
+    )
+    
     jp_account_holder = fields.Char(
         '口座名義人（漢字）',
         help='正式な口座名義人名を漢字で入力'
@@ -144,10 +154,15 @@ class ResPartnerBank(models.Model):
         if self.jp_account_holder_kana:
             self.jp_account_holder_kana = convert_to_halfwidth_kana(self.jp_account_holder_kana)
     
-    @api.onchange('acc_number')
+    @api.onchange('acc_number', 'jp_account_number')
     def _onchange_acc_number(self):
+        # 双方向でゼロ埋めを維持
         if self.acc_number:
             self.acc_number = self.acc_number.zfill(7)
+            self.jp_account_number = self.acc_number
+        elif self.jp_account_number:
+            self.jp_account_number = self.jp_account_number.zfill(7)
+            self.acc_number = self.jp_account_number
     
     def name_get(self):
         result = []
