@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_bank_form_jp_inherit" model="ir.ui.view">
+        <field name="name">res.partner.bank.form.jp.inherit</field>
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="base.view_partner_bank_form"/>
+        <field name="arch" type="xml">
+            <field name="acc_number" position="before">
+                <field name="jp_account_type"/>
+            </field>
+            <field name="bank_id" position="after">
+                <field name="jp_bank_code"/>
+                <field name="jp_branch_code"/>
+                <field name="jp_branch_name"/>
+            </field>
+            <field name="partner_id" position="after">
+                <field name="jp_account_holder"/>
+                <field name="jp_account_holder_kana"/>
+            </field>
+            <xpath expr="//sheet" position="inside">
+                <group string="日本特有情報">
+                    <group>
+                        <field name="jp_yucho_symbol" attrs="{'invisible': [('jp_bank_code', '!=', '9900')]}"/>
+                        <field name="jp_yucho_number" attrs="{'invisible': [('jp_bank_code', '!=', '9900')]}"/>
+                        <field name="jp_bank_book_symbol"/>
+                    </group>
+                    <group>
+                        <field name="jp_transfer_fee_burden"/>
+                        <field name="jp_is_salary_account"/>
+                        <field name="jp_is_main_account"/>
+                        <field name="jp_swift_code"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_generate_transfer_format" model="ir.actions.server">
+        <field name="name">振込フォーマット生成</field>
+        <field name="model_id" ref="base.model_res_partner_bank"/>
+        <field name="binding_model_id" ref="base.model_res_partner_bank"/>
+        <field name="state">code</field>
+        <field name="code">
+if records:
+    from odoo.exceptions import UserError
+    for record in records:
+        try:
+            format_data = record.generate_transfer_format()
+            message = f"""
+振込フォーマット:
+銀行コード: {format_data['bank_code']}
+支店コード: {format_data['branch_code']}
+口座種別: {format_data['account_type']}
+口座番号: {format_data['account_number']}
+口座名義（カナ）: {format_data['account_holder_kana']}
+"""
+            record.message_post(body=message)
+        except Exception as e:
+            raise UserError(str(e))
+        </field>
+    </record>
+</odoo>

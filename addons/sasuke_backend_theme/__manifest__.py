@@ -44,6 +44,7 @@
             'sasuke_backend_theme/static/src/scss/datetimepicker.scss',
             'sasuke_backend_theme/static/src/scss/theme.scss',
             'sasuke_backend_theme/static/src/scss/sidebar.scss',
+            'sasuke_backend_theme/static/src/scss/autocomplete_fix.scss',
             'sasuke_backend_theme/static/src/js/chrome/sidebar_menu.js',
             'sasuke_backend_theme/static/src/js/fields/colors.js',
         ],

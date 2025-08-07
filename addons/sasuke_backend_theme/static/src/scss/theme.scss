@@ -135,7 +135,7 @@ height:3.4rem !important;
 }
 .o_cp_bottom_left .o_form_button_cancel {
     margin-right: 5px !important;
-    padding: 6px 8px !important;
+    padding: 6px 15px !important;
     color: #fff !important;
     background-color: #f46a6a !important;
     border-color: #f46a6a !important;
@@ -332,13 +332,13 @@ button[name="action_uninstall"]:focus {
     background: #fff;
     border-color: #dddddd !important;
     margin-right: 5px !important;
-    padding : 6px 8px !important;
+    padding : 6px 15px !important;
 }
 .o_cp_bottom_left .o_form_button_create {
     color: #fff !important;
     background-color: #74788d !important;
     border-color: #74788d !important;
-    padding: 5px 15px !important;
+    padding: 6px 15px !important;
 }
 
 .o_web_settings_invite {
@@ -359,7 +359,7 @@ button[name="action_uninstall"]:focus {
     align-items: center;
 }
 button.fa.fa-external-link.btn.btn-secondary.o_external_button {
-    padding: 2px !important;
+    padding: 6px 15px !important;
     color: #74788d !important;
     background: none !important;
 }
@@ -803,7 +803,8 @@ a#openSidebar {
  input {
     display: block;
     width: 100%;
-    padding: 8px 12px;
+    //height: 40px !important;
+    //padding: 10px 20px;
     font-size: 13px;
     font-weight: 400;
     line-height: 1.5;
@@ -825,7 +826,7 @@ a#openSidebar {
  select {
     width: 100%;
     height: 40px !important;
-    padding: 8px 12px;
+    padding: 10px 20px;
     font-size: 13px;
     font-weight: 400;
     line-height: 1.5;
@@ -840,8 +841,6 @@ a#openSidebar {
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
     box-shadow: none !important;
     margin-bottom:10px !important;
-    display: flex;
-    align-items: center;
  }
  .o_field_widget .o_input_dropdown .o_dropdown_button {
     position: absolute;
@@ -877,8 +876,7 @@ a#openSidebar {
     border: none !important;
     height: auto !important;
     margin: 0 !important;
-    padding: 2px 4px;
-    line-height: 1.4;
+    padding: 0px;
  }
  .o_base_settings .o_control_panel .o_panel .o_setting_search .searchIcon {
     top: 9px;
@@ -1146,7 +1144,34 @@ a#openSidebar {
  .modal .o_form_view .o_group .o_field_widget {
     width: 98% !important;
  }
- //モーダル終了
+ // モーダル内ボタンの統一スタイル
+.modal .btn {
+    padding: 6px 15px !important;
+    height: 40px !important;
+    min-width: 80px;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.modal .modal-footer .btn {
+    margin-right: 5px !important;
+    margin-left: 0 !important;
+}
+
+.modal .btn-primary,
+.modal .btn-secondary,
+.modal .btn-info,
+.modal .btn-warning,
+.modal .btn[special="cancel"],
+.modal .btn[name="action_cancel"],
+.modal .btn[name="button_cancel"] {
+    padding: 6px 15px !important;
+    height: 40px !important;
+    min-width: 80px;
+}
+
+//モーダル終了
  
  //カレンダー開始
  .o_calendar_view {
@@ -1588,8 +1613,8 @@ a#openSidebar {
         flex-wrap: wrap;
     }
     .btn {
-        padding: 2px 10px !important;
-        height: 35px !important;
+        padding: 6px 15px !important;
+        height: 40px !important;
     }
     .o_form_view .o_form_statusbar > .o_statusbar_status > .o_arrow_button:not(:first-child):before,
     .o_form_view .o_form_statusbar > .o_statusbar_status > .o_arrow_button:not(:first-child):after {
