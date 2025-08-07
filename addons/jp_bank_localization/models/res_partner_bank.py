@@ -15,6 +15,13 @@ class ResPartnerBank(models.Model):
         ('other', 'その他')
     ], string='口座種別', default='ordinary')
     
+    # 日本の銀行マスタから選択して自動入力する
+    jp_bank_master_id = fields.Many2one(
+        'jp.bank',
+        string='銀行（マスタ）',
+        help='銀行名・支店名で検索して選択すると各コードを自動入力する'
+    )
+    
     jp_account_holder = fields.Char(
         '口座名義人（漢字）',
         help='正式な口座名義人名を漢字で入力'
@@ -82,6 +89,27 @@ class ResPartnerBank(models.Model):
         '主要取引口座',
         default=False
     )
+    
+    @api.onchange('jp_bank_master_id')
+    def _onchange_jp_bank_master_id(self):
+        if not self.jp_bank_master_id:
+            return
+        bank_master = self.jp_bank_master_id
+        # res.bank レコードを名前で検索し、なければ作成
+        res_bank = self.env['res.bank'].search([
+            ('name', '=', bank_master.bank_name)
+        ], limit=1)
+        if not res_bank:
+            res_bank = self.env['res.bank'].create({
+                'name': bank_master.bank_name,
+            })
+        self.bank_id = res_bank
+        self.bank_name = res_bank.name
+        res_bank.jp_bank_code = bank_master.bank_code
+        res_bank.jp_branch_code = bank_master.branch_code
+        res_bank.jp_branch_name = bank_master.branch_name
+        res_bank.jp_bank_name_kana = bank_master.bank_name_kana
+        res_bank.jp_branch_name_kana = bank_master.branch_name_kana
     
     @api.constrains('acc_number')
     def _check_acc_number(self):

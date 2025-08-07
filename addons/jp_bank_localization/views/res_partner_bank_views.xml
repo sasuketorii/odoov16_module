@@ -5,7 +5,7 @@
         <field name="model">res.partner.bank</field>
         <field name="inherit_id" ref="base.view_partner_bank_form"/>
         <field name="arch" type="xml">
-            <!-- Ensure only one account number field is present -->
+            <!-- Account number as required and type selector before it -->
             <field name="acc_number" position="attributes">
                 <attribute name="required">1</attribute>
             </field>
@@ -13,23 +13,30 @@
                 <field name="jp_account_type"/>
             </field>
 
-            <!-- Hide duplicated holder fields from base form -->
+            <!-- Keep partner_id visible (Odoo core relation) -->
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+
+            <!-- Hide base holder name field and use Kana holder field instead -->
             <xpath expr="//field[@name='acc_holder_name']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
-            <xpath expr="//field[@name='partner_id']" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
+            <field name="partner_id" position="after">
+                <field name="jp_account_holder_kana"/>
+            </field>
 
+            <!-- Bank master quick picker and JP codes -->
+            <field name="bank_id" position="before">
+                <field name="jp_bank_master_id" context="{'search_default_name': 1}"/>
+            </field>
             <field name="bank_id" position="after">
                 <field name="jp_bank_code"/>
                 <field name="jp_branch_code"/>
                 <field name="jp_branch_name"/>
             </field>
-            <!-- Only show Kana holder -->
-            <field name="partner_id" position="after">
-                <field name="jp_account_holder_kana"/>
-            </field>
+
+            <!-- Japan specific info block -->
             <xpath expr="//sheet" position="inside">
                 <group string="日本特有情報">
                     <group>
