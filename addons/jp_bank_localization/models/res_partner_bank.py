@@ -21,7 +21,8 @@ class ResPartnerBank(models.Model):
     )
     jp_account_holder_kana = fields.Char(
         '口座名義人（カナ）',
-        help='振込用の口座名義人名を半角カナで入力'
+        help='振込用の口座名義人名を半角カナで入力',
+        required=True
     )
     jp_bank_code = fields.Char(
         '銀行コード',

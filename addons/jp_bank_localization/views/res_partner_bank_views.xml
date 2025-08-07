@@ -5,9 +5,22 @@
         <field name="model">res.partner.bank</field>
         <field name="inherit_id" ref="base.view_partner_bank_form"/>
         <field name="arch" type="xml">
+            <!-- Ensure only one account number field is present -->
+            <field name="acc_number" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
             <field name="acc_number" position="before">
                 <field name="jp_account_type"/>
             </field>
+
+            <!-- Hide duplicated holder fields from base form if present -->
+            <xpath expr="//field[@name='acc_holder_name']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+
             <field name="bank_id" position="after">
                 <field name="jp_bank_code"/>
                 <field name="jp_branch_code"/>
