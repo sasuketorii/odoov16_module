@@ -5,8 +5,9 @@
     <field name="model">res.partner.bank</field>
     <field name="inherit_id" ref="base.view_partner_bank_form"/>
     <field name="arch" type="xml">
+      <!-- Replace left column content with our minimal fields and make it span both columns -->
       <field name="acc_number" position="replace">
-        <group>
+        <group colspan="2" col="2">
           <field name="bank_id" options="{'no_create_edit': True}" placeholder="三菱UFJ銀行"/>
           <field name="jpBranchCode" placeholder="001"/>
           <field name="jpBranchName" string="支店名（カナ）" placeholder="ｼﾝｼﾞｭｸ"/>
@@ -15,9 +16,16 @@
           <field name="jpAccountHolderKana" modifiers="{'required': True}" placeholder="ﾔﾏﾀﾞﾀﾛｳ"/>
         </group>
       </field>
-      <field name="acc_holder_name" position="attributes">
+
+      <!-- Hide partner linkage field on the form (keeps relation but not shown) -->
+      <field name="partner_id" position="attributes">
         <attribute name="invisible">1</attribute>
       </field>
+
+      <!-- Hide the bank field on the right column to avoid duplication -->
+      <xpath expr="//sheet/group/group[2]/field[@name='bank_id']" position="attributes">
+        <attribute name="invisible">1</attribute>
+      </xpath>
     </field>
   </record>
 </odoo> 
