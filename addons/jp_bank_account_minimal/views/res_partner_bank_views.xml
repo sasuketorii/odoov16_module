@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_partner_bank_form_min_jp" model="ir.ui.view">
+    <field name="name">res.partner.bank.form.min.jp</field>
+    <field name="model">res.partner.bank</field>
+    <field name="inherit_id" ref="base.view_partner_bank_form"/>
+    <field name="arch" type="xml">
+      <field name="acc_number" position="replace">
+        <group>
+          <field name="bank_id"/>
+          <field name="jpBranchCode"/>
+          <field name="jpBranchName"/>
+          <field name="jpAccountType"/>
+          <field name="acc_number" modifiers="{'required': True}"/>
+          <field name="jpAccountHolderKana" modifiers="{'required': True}"/>
+        </group>
+      </field>
+      <field name="acc_holder_name" position="attributes">
+        <attribute name="invisible">1</attribute>
+      </field>
+    </field>
+  </record>
+</odoo> 
