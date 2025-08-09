@@ -2,10 +2,25 @@
 .o_form_view .o_group .o_field_widget input::placeholder {
   color: #888;
 }
-.o_form_view .o_group .o_field_widget input {
+// Apply background and min-width only to text-like inputs
+.o_form_view .o_group .o_field_widget input:not([type='checkbox']):not([type='radio']):not([type='range']) {
   background-color: #fbfbfb;
+  min-width: 320px;
 }
-.o_form_view .o_group .o_field_widget input,
 .o_form_view .o_group .o_field_widget textarea {
   min-width: 320px;
+  background-color: #fbfbfb;
+}
+// Do not stretch boolean toggles
+.o_form_view .o_group .o_field_boolean .o_switch {
+  width: auto;
+  min-width: 0;
+}
+// Ensure many2one dropdown caret is correctly positioned
+.o_form_view .o_input_dropdown {
+  position: relative;
+}
+.o_form_view .o_input_dropdown > .o_dropdown_button,
+.o_form_view .o_input_dropdown > .o_m2o_dropdown_button {
+  right: 8px;
 } 
