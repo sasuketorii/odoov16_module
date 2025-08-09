@@ -14,7 +14,8 @@
           <field name="jpAccountType"/>
           <field name="acc_number" modifiers="{'required': True}" placeholder="1234567"/>
           <field name="jpAccountHolderKana" modifiers="{'required': True}" placeholder="ヤマダタロウ"/>
-          <field name="partner_id" string="連絡先（この銀行口座の所有者）" options="{'no_create_edit': False}"/>
+          <label for="partner_id" string="連絡先（この銀行口座の所有者）"/>
+          <field name="partner_id" options="{'no_create_edit': False}"/>
         </group>
       </field>
 
