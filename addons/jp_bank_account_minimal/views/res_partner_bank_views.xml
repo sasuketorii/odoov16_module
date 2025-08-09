@@ -7,12 +7,12 @@
     <field name="arch" type="xml">
       <field name="acc_number" position="replace">
         <group>
-          <field name="bank_id"/>
-          <field name="jpBranchCode"/>
-          <field name="jpBranchName"/>
+          <field name="bank_id" options="{'no_create_edit': True}" placeholder="三菱UFJ銀行"/>
+          <field name="jpBranchCode" placeholder="001"/>
+          <field name="jpBranchName" string="支店名（カナ）" placeholder="ｼﾝｼﾞｭｸ"/>
           <field name="jpAccountType"/>
-          <field name="acc_number" modifiers="{'required': True}"/>
-          <field name="jpAccountHolderKana" modifiers="{'required': True}"/>
+          <field name="acc_number" modifiers="{'required': True}" placeholder="1234567"/>
+          <field name="jpAccountHolderKana" modifiers="{'required': True}" placeholder="ﾔﾏﾀﾞﾀﾛｳ"/>
         </group>
       </field>
       <field name="acc_holder_name" position="attributes">

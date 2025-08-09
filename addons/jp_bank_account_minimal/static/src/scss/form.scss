@@ -1,0 +1,11 @@
+// minimal JP bank account form tweaks
+.o_form_view .o_group .o_field_widget input::placeholder {
+  color: #888;
+}
+.o_form_view .o_group .o_field_widget input {
+  background-color: #fbfbfb;
+}
+.o_form_view .o_group .o_field_widget input,
+.o_form_view .o_group .o_field_widget textarea {
+  min-width: 320px;
+} 
