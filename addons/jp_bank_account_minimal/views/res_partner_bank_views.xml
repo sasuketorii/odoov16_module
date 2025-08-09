@@ -8,7 +8,7 @@
       <!-- Replace left column content with our minimal fields and make it span both columns -->
       <field name="acc_number" position="replace">
         <group colspan="2" col="2">
-          <field name="bank_id" options="{'no_create_edit': True}" placeholder="三菱UFJ銀行"/>
+          <field name="bank_id" options="{'no_create_edit': True}" domain="[('isJapanese','=',True)]" placeholder="三菱UFJ銀行"/>
           <field name="jpBranchCode" placeholder="001"/>
           <field name="jpBranchName" string="支店名（カナ）" placeholder="ｼﾝｼﾞｭｸ"/>
           <field name="jpAccountType"/>

@@ -3,21 +3,27 @@
   <data noupdate="1">
     <record id="res_bank_mufg" model="res.bank">
       <field name="name">三菱UFJ銀行</field>
+      <field name="isJapanese">1</field>
     </record>
     <record id="res_bank_mizuho" model="res.bank">
       <field name="name">みずほ銀行</field>
+      <field name="isJapanese">1</field>
     </record>
     <record id="res_bank_smbc" model="res.bank">
       <field name="name">三井住友銀行</field>
+      <field name="isJapanese">1</field>
     </record>
     <record id="res_bank_resona" model="res.bank">
       <field name="name">りそな銀行</field>
+      <field name="isJapanese">1</field>
     </record>
     <record id="res_bank_rakuten" model="res.bank">
       <field name="name">楽天銀行</field>
+      <field name="isJapanese">1</field>
     </record>
     <record id="res_bank_paypay" model="res.bank">
       <field name="name">PayPay銀行</field>
+      <field name="isJapanese">1</field>
     </record>
   </data>
 </odoo> 
