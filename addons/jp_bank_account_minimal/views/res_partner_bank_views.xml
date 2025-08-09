@@ -14,9 +14,13 @@
           <field name="jpAccountType"/>
           <field name="acc_number" modifiers="{'required': True}" placeholder="1234567"/>
           <field name="jpAccountHolderKana" modifiers="{'required': True}" placeholder="ヤマダタロウ"/>
-          <field name="partner_id" string="連絡先（この銀行口座の所有者）" options="{'no_create_edit': False}"/>
         </group>
       </field>
+
+      <!-- Insert partner field right after jpAccountHolderKana with clear label -->
+      <xpath expr="//field[@name='jpAccountHolderKana']" position="after">
+        <field name="partner_id" string="連絡先（この銀行口座の所有者）" options="{'no_create_edit': False}"/>
+      </xpath>
 
       <!-- Hide the entire right group to avoid duplication and irrelevant fields -->
       <xpath expr="//sheet/group/group[2]" position="attributes">
