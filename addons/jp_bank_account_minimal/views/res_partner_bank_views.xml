@@ -5,26 +5,20 @@
     <field name="model">res.partner.bank</field>
     <field name="inherit_id" ref="base.view_partner_bank_form"/>
     <field name="arch" type="xml">
-      <!-- Replace left column content with our minimal fields and make it span both columns -->
-      <field name="acc_number" position="replace">
-        <group colspan="2" col="2">
-          <field name="bank_id" options="{'no_create_edit': True}" domain="[('isJapanese','=',True)]" placeholder="三菱UFJ銀行"/>
-          <field name="jpBranchCode" placeholder="001"/>
+      <!-- Replace outer group to avoid right column and unwanted toggles -->
+      <xpath expr="//sheet/group" position="replace">
+        <group col="2">
+          <field name="bank_id" string="銀行" options="{'no_create_edit': True}"
+                 domain="[('isJapanese','=',True)]" placeholder="三菱UFJ銀行"/>
+          <field name="jpBranchCode" string="支店番号" placeholder="001"/>
           <field name="jpBranchName" string="支店名（カナ）" placeholder="ｼﾝｼﾞｭｸ"/>
-          <field name="jpAccountType"/>
-          <field name="acc_number" modifiers="{'required': True}" placeholder="1234567"/>
-          <field name="jpAccountHolderKana" modifiers="{'required': True}" placeholder="ヤマダタロウ"/>
-          <!-- 明示的にラベルとフィールドをペアで描画 -->
-          <div class="o_row">
-            <label for="partner_id" class="o_form_label" string="連絡先（この銀行口座の所有者）"/>
-            <field name="partner_id" nolabel="1" options="{'no_create_edit': False}"/>
-          </div>
+          <field name="jpAccountType" string="口座種類"/>
+          <field name="acc_number" string="口座番号" modifiers="{'required': True}"
+                 placeholder="1234567"/>
+          <field name="jpAccountHolderKana" string="口座名義人（カナ）"
+                 modifiers="{'required': True}" placeholder="ヤマダタロウ"/>
+          <field name="partner_id" string="連絡先（この銀行口座の所有者）"/>
         </group>
-      </field>
-
-      <!-- Hide the entire right group to avoid duplication and irrelevant fields -->
-      <xpath expr="//sheet/group/group[2]" position="attributes">
-        <attribute name="invisible">1</attribute>
       </xpath>
     </field>
   </record>
