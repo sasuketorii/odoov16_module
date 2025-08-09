@@ -18,6 +18,7 @@
           <field name="jpAccountHolderKana" string="口座名義人（カナ）"
                  modifiers="{'required': True}" placeholder="ヤマダタロウ"/>
           <field name="partner_id" string="連絡先（この銀行口座の所有者）"/>
+          <field name="allow_out_payment" string="この口座を支払いに使用可" widget="boolean_toggle"/>
           <field name="active" invisible="1"/>
         </group>
       </xpath>
