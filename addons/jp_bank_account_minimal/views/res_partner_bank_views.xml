@@ -14,8 +14,11 @@
           <field name="jpAccountType"/>
           <field name="acc_number" modifiers="{'required': True}" placeholder="1234567"/>
           <field name="jpAccountHolderKana" modifiers="{'required': True}" placeholder="ヤマダタロウ"/>
-          <label for="partner_id" string="連絡先（この銀行口座の所有者）"/>
-          <field name="partner_id" options="{'no_create_edit': False}"/>
+          <!-- 明示的にラベルとフィールドをペアで描画 -->
+          <div class="o_row">
+            <label for="partner_id" class="o_form_label" string="連絡先（この銀行口座の所有者）"/>
+            <field name="partner_id" nolabel="1" options="{'no_create_edit': False}"/>
+          </div>
         </group>
       </field>
 
