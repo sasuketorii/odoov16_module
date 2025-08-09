@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_jp_bank_root"
+              name="日本銀行管理"
+              parent="account.menu_finance_configuration"
+              sequence="50"/>
+    
+    <menuitem id="menu_jp_bank_master"
+              name="銀行マスタ"
+              parent="menu_jp_bank_root"
+              action="action_jp_bank"
+              sequence="10"/>
+    
+    <menuitem id="menu_jp_bank_accounts"
+              name="銀行口座"
+              parent="menu_jp_bank_root"
+              action="base.action_res_partner_bank_account_form"
+              sequence="20"/>
+    
+    <menuitem id="menu_jp_banks"
+              name="銀行一覧"
+              parent="menu_jp_bank_root"
+              action="base.action_res_bank_form"
+              sequence="30"/>
+</odoo>

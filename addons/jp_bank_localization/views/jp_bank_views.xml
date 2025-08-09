@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_jp_bank_form" model="ir.ui.view">
+        <field name="name">jp.bank.form</field>
+        <field name="model">jp.bank</field>
+        <field name="arch" type="xml">
+            <form string="日本の銀行">
+                <sheet>
+                    <group>
+                        <group string="銀行情報">
+                            <field name="bank_code"/>
+                            <field name="bank_name"/>
+                            <field name="bank_name_kana"/>
+                            <field name="bank_type"/>
+                        </group>
+                        <group string="支店情報">
+                            <field name="branch_code"/>
+                            <field name="branch_name"/>
+                            <field name="branch_name_kana"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="その他">
+                            <field name="swift_code"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_jp_bank_tree" model="ir.ui.view">
+        <field name="name">jp.bank.tree</field>
+        <field name="model">jp.bank</field>
+        <field name="arch" type="xml">
+            <tree string="日本の銀行リスト">
+                <field name="bank_code"/>
+                <field name="bank_name"/>
+                <field name="branch_code"/>
+                <field name="branch_name"/>
+                <field name="bank_type"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_jp_bank_search" model="ir.ui.view">
+        <field name="name">jp.bank.search</field>
+        <field name="model">jp.bank</field>
+        <field name="arch" type="xml">
+            <search string="銀行検索">
+                <field name="bank_code"/>
+                <field name="bank_name"/>
+                <field name="branch_code"/>
+                <field name="branch_name"/>
+                <filter name="active" string="有効" domain="[('active','=',True)]"/>
+                <separator/>
+                <filter name="city_bank" string="都市銀行" domain="[('bank_type','=','city')]"/>
+                <filter name="regional_bank" string="地方銀行" domain="[('bank_type','=','regional')]"/>
+                <filter name="online_bank" string="ネット銀行" domain="[('bank_type','=','online')]"/>
+                <filter name="postal_bank" string="ゆうちょ銀行" domain="[('bank_type','=','postal')]"/>
+                <group expand="0" string="グループ化">
+                    <filter name="group_bank_type" string="銀行種別" context="{'group_by':'bank_type'}"/>
+                    <filter name="group_bank_code" string="銀行コード" context="{'group_by':'bank_code'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_jp_bank" model="ir.actions.act_window">
+        <field name="name">日本の銀行</field>
+        <field name="res_model">jp.bank</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_jp_bank_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                銀行情報を登録する
+            </p>
+            <p>
+                日本の銀行および支店情報を管理します。
+            </p>
+        </field>
+    </record>
+</odoo>

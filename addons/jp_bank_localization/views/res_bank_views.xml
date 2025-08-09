@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_res_bank_form_jp_inherit" model="ir.ui.view">
+        <field name="name">res.bank.form.jp.inherit</field>
+        <field name="model">res.bank</field>
+        <field name="inherit_id" ref="base.view_res_bank_form"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="jp_bank_code"/>
+                <field name="jp_bank_name_kana"/>
+                <field name="jp_bank_type"/>
+            </field>
+            <field name="bic" position="after">
+                <field name="jp_branch_code"/>
+                <field name="jp_branch_name"/>
+                <field name="jp_branch_name_kana"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_res_bank_tree_jp_inherit" model="ir.ui.view">
+        <field name="name">res.bank.tree.jp.inherit</field>
+        <field name="model">res.bank</field>
+        <field name="inherit_id" ref="base.view_res_bank_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="jp_bank_code" optional="show"/>
+                <field name="jp_branch_code" optional="show"/>
+                <field name="jp_branch_name" optional="hide"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
