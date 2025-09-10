@@ -8,10 +8,11 @@
   'author': 'SasukeTorii',
   'website': 'https://company.rev-c.com',
   'license': 'LGPL-3',
-  'depends': ['base', 'contacts', 'web'],
+  'depends': ['base', 'contacts', 'web', 'account'],
   'data': [
     'security/ir.model.access.csv',
     'views/res_partner_bank_views.xml',
+    'views/account_bank_setup_views.xml',
     'data/res_bank_jp_min.xml',
   ],
   'assets': {

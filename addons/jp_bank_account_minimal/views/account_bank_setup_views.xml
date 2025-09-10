@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- 会計の銀行口座セットアップウィザードを継承して日本用項目を追加 -->
+  <record id="view_account_setup_bank_account_form_jp_min" model="ir.ui.view">
+    <field name="name">account.setup.bank.account.form.jp.min</field>
+    <field name="model">account.setup.bank.manual.config</field>
+    <field name="inherit_id" ref="account.setup_bank_account_wizard"/>
+    <field name="arch" type="xml">
+      <!-- 既存 bank_id にドメイン/ラベル/プレースホルダを付与 -->
+      <field name="bank_id" position="attributes">
+        <attribute name="string">銀行</attribute>
+        <attribute name="placeholder">三菱UFJ銀行</attribute>
+        <attribute name="domain">[("isJapanese","=",True)]</attribute>
+      </field>
+
+      <!-- acc_number の直後に日本用の必須項目を追加 -->
+      <field name="acc_number" position="after">
+        <field name="jpBranchCode" string="支店番号" placeholder="001"/>
+        <field name="jpBranchName" string="支店名（カナ）" placeholder="ｼﾝｼﾞｭｸ"/>
+        <field name="jpAccountType" string="口座種類"/>
+        <field name="jpAccountHolderKana" string="口座名義人（カナ）" placeholder="ヤマダタロウ"/>
+      </field>
+    </field>
+  </record>
+</odoo>
