@@ -1,0 +1,1 @@
+2025-09-18: Fixed acoona_jp_prefecture_localization pre_init_hook to operate via raw SQL and skip non-existent tables (ir_translation). Service restart & module reinstall verified; user confirmed fix.

@@ -23,7 +23,7 @@ try:
     with reg.cursor() as cr:
         env = api.Environment(cr, SUPERUSER_ID, {})
         # コマンドライン引数からモジュール名を取得
-        module_name = sys.argv[1] if len(sys.argv) > 1 else 'jp_prefecture_localization'
+        module_name = sys.argv[1] if len(sys.argv) > 1 else 'acoona_jp_prefecture_localization'
         
         module = env['ir.module.module'].search([('name', '=', module_name)])
         

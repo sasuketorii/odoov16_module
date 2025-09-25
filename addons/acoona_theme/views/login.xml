@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="login_layout_inherit" inherit_id="web.login_layout" name="Acoona Theme Login Layout">
+        <xpath expr="//div[hasclass('text-center','small','mt-4','pt-3','border-top')]" position="replace">
+            <div class="text-center small mt-4 pt-3 border-top">
+                <a href="https://company.rev-c.com" target="_blank">Powered by <span>REV-C</span></a>
+            </div>
+        </xpath>
+    </template>
+</odoo>

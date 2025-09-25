@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_jp_bank_user,jp.bank.user,model_jp_bank,base.group_user,1,0,0,0
-access_jp_bank_accountant,jp.bank.accountant,model_jp_bank,account.group_account_user,1,1,1,0
-access_jp_bank_manager,jp.bank.manager,model_jp_bank,account.group_account_manager,1,1,1,1

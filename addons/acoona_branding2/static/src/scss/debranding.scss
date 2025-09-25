@@ -1,0 +1,25 @@
+/* Acoona branding debranding CSS (backend only) */
+
+/* Settings > About: hide any mobile store promotion */
+div#about div#appstore,
+div#about [data-appstore],
+div#about [data-section*="appstore"],
+div#about a[href*="play.google.com"],
+div#about a[href*="apps.apple.com"],
+div#about a[href*="itunes.apple.com"],
+div#about img[src*="google_play"],
+div#about img[src*="google"],
+div#about img[src*="app_store"],
+div#about img[src*="apps.apple"],
+div#about img[src*="apple_store"] {
+  display: none !important;
+}
+
+/* Settings > General: hide upgrade banners as a last-resort fallback */
+.o_settings_container .o_upgrade_panel,
+.o_settings_container [data-section*="upgrade"],
+.o_settings_container div[id*="upgrade_panel"],
+.o_settings_container div[id*="upgrade_box"] {
+  display: none !important;
+}
+

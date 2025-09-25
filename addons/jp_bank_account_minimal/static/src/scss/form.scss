@@ -5,10 +5,12 @@
 // Apply background and min-width only to text-like inputs
 .o_form_view .o_group .o_field_widget input:not([type='checkbox']):not([type='radio']):not([type='range']) {
   background-color: #fbfbfb;
-  min-width: 320px;
+  min-width: 200px; // 320px から 200px に縮小
+  max-width: 100%; // 親要素の幅を超えないように制限
 }
 .o_form_view .o_group .o_field_widget textarea {
-  min-width: 320px;
+  min-width: 200px; // 320px から 200px に縮小
+  max-width: 100%; // 親要素の幅を超えないように制限
   background-color: #fbfbfb;
 }
 // Do not stretch boolean toggles
