@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <record id="report_layout_japan" model="report.layout">
-            <field name="name">Japan</field>
-            <field name="sequence">6</field>
-            <field name="view_id" ref="l10n_jp_invoice_system.external_layout_jp"/>
-            <field name="image">/web/static/img/placeholder.png</field>
-            <field name="pdf" type="binary" file="l10n_jp_invoice_system/static/pdf/preview_japan.pdf"/>
-        </record>
-    </data>
+    <!-- このファイルはプレースホルダーです。帳票レイアウトの生成は Python フックで行います。 -->
+
+    <record id="purchase.action_report_purchase_order" model="ir.actions.report">
+        <field name="report_name">l10n_jp_invoice_system.report_purchaseorder_document_jp_root</field>
+        <field name="report_file">l10n_jp_invoice_system.report_purchaseorder_document_jp_root</field>
+        <field name="print_report_name">(object.state in ['draft','sent','to approve']) and ('見積依頼書 - %s' % object.name) or ('発注書 - %s' % object.name)</field>
+    </record>
+
+    <function model="res.company" name="_l10n_jp_configure_default_taxes" eval="([[ref('base.main_company')]])"/>
+
 </odoo>

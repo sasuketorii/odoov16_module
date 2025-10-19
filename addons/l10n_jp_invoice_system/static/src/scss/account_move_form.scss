@@ -1,0 +1,92 @@
+.o_form_view {
+  .oe_title {
+    h1 {
+      width: 100%;
+
+      > .o_field_widget {
+        width: 100%;
+
+        input {
+          width: 100%;
+        }
+      }
+
+      &.o_l10n_jp_title_fullwidth {
+        > .o_field_widget:not(:first-child) {
+          flex: 1 1 auto;
+          min-width: 0;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .o_group.o_l10n_jp_invoice_header_left,
+  .o_group.o_l10n_jp_invoice_header_right,
+  .o_group.o_l10n_jp_header_left,
+  .o_group.o_l10n_jp_header_right {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .o_group.o_l10n_jp_invoice_header_left .o_input_dropdown,
+  .o_group.o_l10n_jp_invoice_header_right .o_input_dropdown,
+  .o_group.o_l10n_jp_header_left .o_input_dropdown,
+  .o_group.o_l10n_jp_header_right .o_input_dropdown {
+    display: flex;
+    width: 100%;
+
+    input {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+  }
+
+  .o_group.o_l10n_jp_invoice_header_left,
+  .o_group.o_l10n_jp_header_left {
+    > .o_form_label {
+      margin-bottom: 0.25rem;
+    }
+
+    > .o_field_widget {
+      flex: 1 1 auto;
+      width: 100%;
+      max-width: none;
+      margin-bottom: 0.75rem;
+    }
+  }
+
+  .o_group.o_l10n_jp_invoice_header_right > .o_field_widget,
+  .o_group.o_l10n_jp_header_right > .o_field_widget {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: none;
+    margin-bottom: 0.75rem;
+
+    input,
+    .o_input_dropdown,
+    .o_input_dropdown input,
+    select {
+      width: 100%;
+    }
+  }
+
+  .o_l10n_jp_invoice_due_row {
+    gap: 0.75rem;
+
+    .o_field_widget {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    .o_form_label {
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    .o_field_widget input,
+    .o_field_widget .o_input_dropdown {
+      width: 100%;
+    }
+  }
+}

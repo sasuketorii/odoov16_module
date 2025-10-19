@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- __system__ ユーザーおよび対応パートナーを Acoona Bot に名称変更 -->
+    <record id="base.partner_root" model="res.partner">
+        <field name="name">Acoona Bot</field>
+    </record>
+    <record id="base.user_root" model="res.users">
+        <field name="partner_id" ref="base.partner_root"/>
+    </record>
+</odoo>

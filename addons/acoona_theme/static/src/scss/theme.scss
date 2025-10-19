@@ -7,6 +7,12 @@ body {
     font-family: 'Noto Sans JP', sans-serif !important;
     background-color: #f8f8fb;
 }
+:root {
+    --acoona-input-bg: #f4f8ff;
+    --acoona-input-border: #c5d4f3;
+    --acoona-input-focus-border: #7ca4f8;
+    --acoona-input-focus-shadow: rgba(124, 164, 248, 0.15);
+}
 a {
     color: $primary_accent;
 }
@@ -132,13 +138,43 @@ height:3.4rem !important;
 .o_cp_bottom_left .o_form_button_cancel {
     margin-right: 5px !important;
     padding: 6px 8px !important;
-    color: #fff !important;
-    background-color: #f46a6a !important;
-    border-color: #f46a6a !important;
+    color: #f46a6a !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
 }
 .o_cp_bottom_left .o_form_button_cancel:hover {
-    background-color: #cf5a5a !important;
-    border-color: #c35555 !important;
+    color: #cf5a5a !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+.btn[special="cancel"],
+button[special="cancel"],
+button[special="cancel"] span,
+.btn[special="cancel"] span {
+    color: #f46a6a !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+.btn[special="cancel"]:hover,
+button[special="cancel"]:hover,
+.btn[special="cancel"]:hover span,
+button[special="cancel"]:hover span {
+    color: #cf5a5a !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+.btn[special="cancel"]:active,
+button[special="cancel"]:active,
+.btn[special="cancel"]:focus,
+button[special="cancel"]:focus {
+    color: #b75050 !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
 }
 .o_control_panel {
     border-bottom: none important;
@@ -216,29 +252,28 @@ height:3.4rem !important;
     color: #fff !important;
 }
 .btn-secondary {
-    color: #fff !important;
-    background-color: #74788d !important;
-    border-color: #74788d !important;
+    color: #636678 !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
 }
 .btn-secondary:hover {
-    color: #fff !important;
-    background-color: #636678 !important;
-    border-color: #5d6071 !important;
+    color: #4a4d5e !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
 }
-.btn-secondary:active {
-    color: #fff;
-    background-color: #5d6071 !important;
-    border-color: #575a6a !important;
+.btn-secondary:active,
+.btn-secondary:focus,
+.btn-check:focus+.btn-secondary {
+    color: #3a3d4a !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
 }
-.btn-check:focus+.btn-secondary, .btn-secondary:focus {
-    color: #fff;
-    background-color: #636678 !important;
-    border-color: #5d6071 !important;
-    -webkit-box-shadow: 0 0 0 .15rem rgba(137,140,158,.5) !important;
-    box-shadow: 0 0 0 .15rem rgba(137,140,158,.5) !important;
-}
-.btn-secondary i,.btn-secondary span {
-    color: #fff !important;
+.btn-secondary i,
+.btn-secondary span {
+    color: inherit !important;
 }
 .btn-info {
     color: #fff !important;
@@ -253,31 +288,32 @@ height:3.4rem !important;
 button[name="action_cancel"],
 button[name="button_cancel"],
 button[special="cancel"] {
-    color: #fff !important;
-    background-color: #f46a6a !important;
+    color: #f46a6a !important;
+    background-color: transparent !important;
     border-color: #f46a6a !important;
 }
 button[name="action_cancel"]:hover,
 button[name="button_cancel"]:hover,
 button[special="cancel"]:hover {
-    background-color: #cf5a5a !important;
-    border-color: #c35555 !important;
+    color: #cf5a5a !important;
+    background-color: transparent !important;
+    border-color: #cf5a5a !important;
 }
 button[name="action_cancel"]:active,
 button[name="button_cancel"]:active,
 button[special="cancel"]:active {
-    color: #fff !important;
-    background-color: #c35555 !important;
+    color: #b75050 !important;
+    background-color: transparent !important;
     border-color: #b75050 !important;
 }
 button[name="action_cancel"]:focus,
 button[name="button_cancel"]:focus,
 button[special="cancel"]:focus {
-    color: #fff !important;
-    background-color: #cf5a5a !important;
-    border-color: #c35555 !important;
-    -webkit-box-shadow: 0 0 0 0.15rem rgba(246,128,128,.50) !important;
-    box-shadow: 0 0 0 0.15rem rgba(246,128,128,.50) !important;
+    color: #cf5a5a !important;
+    background-color: transparent !important;
+    border-color: #cf5a5a !important;
+    -webkit-box-shadow: 0 0 0 0.15rem rgba(246,128,128,.25) !important;
+    box-shadow: 0 0 0 0.15rem rgba(246,128,128,.25) !important;
 }
 button[name="update_module"] {
     margin-right: 2px;
@@ -590,7 +626,7 @@ th.o_list_record_selector {
     border-radius: 5px;
 }
 .o_required_modifier > .o_input_dropdown > .ui-autocomplete-input {
-    border-left: solid 3px #f46a6a !important;
+    border-left: solid 3px var(--acoona-input-focus-border) !important;
 }
 .fa-building-o {
     color: #555b6d !important;
@@ -793,19 +829,17 @@ a#openSidebar {
  }
  //フォントカラー終了
  
- //フォーム
- input {
-    display: block;
+//フォーム
+.o_form_view input.o_input:not([type='radio']):not([type='checkbox']):not(.o-autocomplete--input),
+.o_form_view .o_input_dropdown input.o_input:not(.o-autocomplete--input) {
     width: 100%;
-    //height: 40px !important;
-    //padding: 10px 20px;
     font-size: 13px;
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
-    background-color: #fff;
+    background-color: var(--acoona-input-bg);
     background-clip: padding-box;
-    border: 1px solid #ced4da !important;
+    border: 1px solid var(--acoona-input-border) !important;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -815,9 +849,11 @@ a#openSidebar {
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
     box-shadow: none !important;
-    margin-bottom:10px !important;
- }
- select {
+    margin-bottom: 10px !important;
+}
+
+.o_form_view select,
+.o_form_view .o_input_dropdown select {
     width: 100%;
     height: 40px !important;
     padding: 10px 20px;
@@ -825,18 +861,144 @@ a#openSidebar {
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
-    background-color: #fff;
+    background-color: var(--acoona-input-bg);
     background-clip: padding-box;
-    border: 1px solid #ced4da !important;
+    border: 1px solid var(--acoona-input-border) !important;
     border-radius: .25rem;
     -webkit-transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
     transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
     box-shadow: none !important;
-    margin-bottom:10px !important;
- }
- .o_field_widget .o_input_dropdown .o_dropdown_button {
+    margin-bottom: 10px !important;
+}
+
+.o_form_view .o_address_state_city_row,
+.o_form_view .o_address_format > div:has(> .o_address_state) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.o_form_view .o_address_state_city_row > .o_address_state,
+.o_form_view .o_address_state_city_row > .o_address_city,
+.o_form_view .o_address_format > div:has(> .o_address_state) > .o_address_state,
+.o_form_view .o_address_format > div:has(> .o_address_state) > .o_address_city {
+    flex: 1 1 calc(50% - 4px);
+    min-width: 0;
+    margin: 0;
+}
+
+.o_form_view .o_address_state_city_row > .o_address_state .o_input_dropdown,
+.o_form_view .o_address_state_city_row > .o_address_city .o_input_dropdown,
+.o_form_view .o_address_format > div:has(> .o_address_state) > .o_address_state .o_input_dropdown,
+.o_form_view .o_address_format > div:has(> .o_address_state) > .o_address_city .o_input_dropdown {
+    width: 100%;
+}
+
+.o_form_view .o_address_state_city_row > .o_address_state .o_input,
+.o_form_view .o_address_state_city_row > .o_address_city .o_input,
+.o_form_view .o_address_format > div:has(> .o_address_state) > .o_address_state .o_input,
+.o_form_view .o_address_format > div:has(> .o_address_state) > .o_address_city .o_input {
+    width: 100%;
+}
+
+.o_form_view .o_field_widget.o_field_many2manytags,
+.o_form_view .o_field_widget.o_field_many2many_tags {
+    box-sizing: border-box;
+    width: 100%;
+    background-color: var(--acoona-input-bg) !important;
+    border: 1px solid var(--acoona-input-border) !important;
+    border-radius: .25rem;
+    padding: 6px 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.o_form_view .o_field_widget.o_field_many2manytags .badge,
+.o_form_view .o_field_widget.o_field_many2many_tags .badge {
+    border: none !important;
+    background-color: rgba(124, 164, 248, 0.15) !important;
+    color: #2b3a4a !important;
+    border-radius: 12px;
+    padding: 4px 10px;
+    line-height: 1.2;
+}
+
+.o_form_view .o_field_widget.o_field_many2manytags .badge .o_delete,
+.o_form_view .o_field_widget.o_field_many2many_tags .badge .o_delete {
+    margin-left: 6px;
+}
+
+.o_form_view .o_field_widget.o_field_many2manytags .o_input_dropdown,
+.o_form_view .o_field_widget.o_field_many2many_tags .o_input_dropdown,
+.o_form_view .o_field_widget.o_field_many2manytags .o_autocomplete,
+.o_form_view .o_field_widget.o_field_many2many_tags .o_autocomplete {
+    flex: 1 1 140px;
+    min-width: 120px;
+    margin-bottom: 0;
+    background: transparent;
+    border: none;
+}
+
+.o_form_view .o_field_widget.o_field_many2manytags .o_field_many2many_selection,
+.o_form_view .o_field_widget.o_field_many2many_tags .o_field_many2many_selection {
+    flex: 1 1 140px;
+    min-width: 120px;
+    margin: 0;
+    background: transparent;
+    border: none;
+}
+
+.o_form_view .o_field_widget.o_field_many2manytags .o_tag,
+.o_form_view .o_field_widget.o_field_many2many_tags .o_tag,
+.o_form_view .o_field_widget.o_field_many2manytags .badge.o_tag,
+.o_form_view .o_field_widget.o_field_many2many_tags .badge.o_tag {
+    background: rgba(124, 164, 248, 0.2) !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #2b3a4a !important;
+}
+
+.o_form_view .o_field_widget.o_field_many2manytags .o_input_dropdown .o_input,
+.o_form_view .o_field_widget.o_field_many2many_tags .o_input_dropdown .o_input,
+.o_form_view .o_field_widget.o_field_many2manytags .o_autocomplete .o_input,
+.o_form_view .o_field_widget.o_field_many2many_tags .o_autocomplete .o_input {
+    width: 100%;
+    min-width: 0;
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.o_form_view .o_field_widget.o_field_many2manytags .o_field_tags,
+.o_form_view .o_field_widget.o_field_many2many_tags .o_field_tags {
+    flex: 1 1 140px;
+    min-width: 120px;
+    padding: 0;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.o_input_dropdown .o-autocomplete--input,
+.o-autocomplete.dropdown .o-autocomplete--input {
+    border: none !important;
+    outline: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+    .o_form_view .o_address_state_city_row > .o_address_state,
+    .o_form_view .o_address_state_city_row > .o_address_city,
+    .o_form_view .o_address_format > div:has(> .o_address_state) > .o_address_state,
+    .o_form_view .o_address_format > div:has(> .o_address_state) > .o_address_city {
+        flex-basis: 100%;
+    }
+}
+
+.o_field_widget .o_input_dropdown .o_dropdown_button {
     position: absolute;
     top: 6px;
     left: auto;
@@ -852,9 +1014,14 @@ a#openSidebar {
     pointer-events: none;
  }
  .o_input {
-    border: solid 1px #f4faff !important;
-    background-color: #f4faff !important;
+    border: 1px solid var(--acoona-input-border) !important;
+    background-color: var(--acoona-input-bg) !important;
     color: #495057 !important;
+    box-shadow: none !important;
+ }
+ .o_input:focus {
+    border-color: var(--acoona-input-focus-border) !important;
+    box-shadow: 0 0 0 2px var(--acoona-input-focus-shadow) !important;
  }
  .o_form_view .oe_button_box .btn.oe_stat_button > .o_stat_info .o_stat_value,
  .o_form_view .oe_button_box .btn.oe_stat_button > span .o_stat_value {
@@ -863,6 +1030,42 @@ a#openSidebar {
  .o_form_view .oe_button_box .oe_stat_button .o_button_icon {
     color: #007fff;
  }
+ 
+.o_form_view .o_input_dropdown {
+    position: relative;
+    background-color: var(--acoona-input-bg);
+    border: 1px solid var(--acoona-input-border);
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    box-shadow: none;
+    margin-bottom: 10px;
+}
+
+.o_form_view .o_input_dropdown:focus-within {
+    border-color: var(--acoona-input-focus-border);
+    box-shadow: 0 0 0 2px var(--acoona-input-focus-shadow);
+}
+
+.o_form_view .o_input_dropdown input.o_input,
+.o_form_view .o_input_dropdown select,
+.o-autocomplete.dropdown .o_input {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin-bottom: 0 !important;
+}
+
+.o-autocomplete.dropdown {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    margin-bottom: 0;
+}
+
+.o-autocomplete.dropdown .o-autocomplete--dropdown-menu,
+.o-autocomplete--dropdown-menu {
+    border-color: var(--acoona-input-border);
+}
  //フォーム終了
  
  //検索ビュー

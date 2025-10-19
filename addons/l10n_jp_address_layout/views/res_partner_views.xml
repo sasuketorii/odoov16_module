@@ -17,7 +17,7 @@
                             attrs="{'invisible':['|',('parent_id','=',False),('type','!=','contact')]}"
                         />
                     </div>
-                    <div>
+                    <div class="o_address_zip_row">
                         <span>〒</span>
                         <field
                             name="zip"
@@ -26,7 +26,7 @@
                             attrs="{'readonly':[('type','=','contact'),('parent_id','!=',False)]}"
                         />
                     </div>
-                    <div>
+                    <div class="o_address_state_city_row">
                         <field
                             name="state_id"
                             class="o_address_state"

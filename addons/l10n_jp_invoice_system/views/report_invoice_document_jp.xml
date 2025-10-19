@@ -1,103 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- 日本向け請求書テンプレート拡張
-         - 明細に軽減税率対象の印を表示
-         - 合計欄を税率ごとに表示（10%/8%）
-    -->
-
-    <!-- 請求書本文（account.report_invoice_document）を日本仕様で強化 -->
     <template id="report_invoice_document_jp" inherit_id="account.report_invoice_document">
-        <!-- 明細の品目名の横に軽減税率印（※）を表示 -->
-        <xpath expr="//table[hasclass('o_main_table')]//tbody//tr//td[1]" position="attributes">
-            <attribute name="class" add="o_line_name" separator=" "/>
-        </xpath>
-        <xpath expr="//table[hasclass('o_main_table')]//tbody//tr//td[1]/*[self::span or self::div][1]" position="after">
-            <span t-if="sum([1 for t in line.tax_ids if t.amount == 8]) &gt; 0" class="text-danger" style="margin-left: 4px;">※</span>
-        </xpath>
+        <xpath expr="//t[@t-call='web.external_layout']" position="replace">
+            <t t-call="web.external_layout">
+                <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                <t t-set="company" t-value="o.company_id"/>
+                <t t-set="lines" t-value="o.invoice_line_ids"/>
+                <t t-set="tax_summary" t-value="o._get_jp_tax_summary()"/>
+                <t t-set="bank_info" t-value="o._get_jp_bank_info()"/>
 
-        <!-- 合計欄の置換: 税率ごとの税抜合計と消費税額を表示 -->
-        <xpath expr="//div[@id='total']" position="replace">
-            <div id="total" class="row justify-content-end">
-                <div class="col-5">
-                    <table class="table table-sm" style="page-break-inside: avoid;">
-                        <t t-set="total_base_10"
-                           t-value="sum(line.price_subtotal for line in o.invoice_line_ids if any(t.amount == 10 for t in line.tax_ids))"/>
-                        <t t-set="total_tax_10"
-                           t-value="sum((line.price_total - line.price_subtotal) for line in o.invoice_line_ids if any(t.amount == 10 for t in line.tax_ids))"/>
-                        <t t-set="total_base_8"
-                           t-value="sum(line.price_subtotal for line in o.invoice_line_ids if any(t.amount == 8 for t in line.tax_ids))"/>
-                        <t t-set="total_tax_8"
-                           t-value="sum((line.price_total - line.price_subtotal) for line in o.invoice_line_ids if any(t.amount == 8 for t in line.tax_ids))"/>
+                <div class="page">
+                    <h2 class="jp-invoice__legacy-title">Invoice</h2>
+                    <div class="jp-invoice-page">
+                    <div class="jp-invoice">
+                    <div class="jp-invoice__title-bar">
+                        <span>請求書</span>
+                    </div>
 
-                        <tr class="border-black o_subtotal">
-                            <td><strong>税抜合計金額</strong></td>
-                            <td class="text-right">
-                                <span t-field="o.amount_untaxed"/>
-                            </td>
-                        </tr>
-
-                        <t t-if="total_tax_10 != 0">
-                            <tr>
-                                <td><span class="text-nowrap">10%対象 税抜合計</span></td>
-                                <td class="text-right">
-                                    <span t-esc="total_base_10" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><span class="text-nowrap">消費税額 (10%)</span></td>
-                                <td class="text-right">
-                                    <span t-esc="total_tax_10" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                </td>
-                            </tr>
-                        </t>
-
-                        <t t-if="total_tax_8 != 0">
-                            <tr>
-                                <td><span class="text-nowrap">8%対象 税抜合計</span></td>
-                                <td class="text-right">
-                                    <span t-esc="total_base_8" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><span class="text-nowrap">消費税額 (8%)</span></td>
-                                <td class="text-right">
-                                    <span t-esc="total_tax_8" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                </td>
-                            </tr>
-                        </t>
-
-                        <tr class="border-black o_total">
-                            <td><strong>合計金額（税込）</strong></td>
-                            <td class="text-right">
-                                <span t-field="o.amount_total"/>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </xpath>
-
-        <!-- 合計欄の下に銀行口座ブロック（お振込先）を表示 -->
-        <xpath expr="//div[@id='total']" position="after">
-            <t t-if="o.company_id.l10n_jp_show_bank_block">
-                <t t-set="bank" t-value="o.l10n_jp_invoice_bank_id or o.company_id.l10n_jp_default_invoice_bank_id or (o.company_id.bank_ids and o.company_id.bank_ids[0])"/>
-                <t t-if="bank">
-                    <div class="row mt-3">
-                        <div class="col-7"/>
-                        <div class="col-5">
-                            <strong>お振込先</strong>
-                            <ul class="list-unstyled mb-0">
-                                <li><span t-field="bank.bank_id"/></li>
-                                <li>
-                                    <t t-if="bank.bank_id and bank.bank_id.bic">
-                                        <span>BIC/SWIFT: </span><span t-field="bank.bank_id.bic"/>
-                                    </t>
+                    <div class="row jp-invoice__header">
+                        <div class="col-7 jp-invoice__header-left">
+                            <div class="jp-invoice__recipient-name">
+                                <span t-esc="o._acoona_invoice_recipient_label()"/>
+                            </div>
+                            <div class="jp-invoice__recipient-address">
+                                <t t-set="recipient_address_lines" t-value="o._get_jp_address_lines(o.partner_id)"/>
+                                <t t-foreach="recipient_address_lines" t-as="addr_line">
+                                    <div t-esc="addr_line"/>
+                                </t>
+                            </div>
+                            <div class="jp-invoice__opening" t-if="company.l10n_jp_invoice_opening_text">
+                                <span t-esc="company.l10n_jp_invoice_opening_text"/>
+                            </div>
+                            <div class="jp-invoice__amount-box">
+                                <div class="jp-invoice__amount-label">ご請求金額（税込）</div>
+                                <div class="jp-invoice__amount-value">
+                                    <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </div>
+                            </div>
+                            <div class="jp-invoice__due" t-if="o.invoice_date_due">
+                                支払期限: <span class="jp-invoice__due-date" t-esc="o._acoona_invoice_format_date(o.invoice_date_due)"/>
+                            </div>
+                            <div class="jp-invoice__payment-note" t-if="company.acoona_invoice_payment_note">
+                                <span t-esc="company.acoona_invoice_payment_note"/>
+                            </div>
+                        </div>
+                        <div class="col-5 jp-invoice__header-right">
+                                <ul class="jp-invoice__meta">
+                                    <li>
+                                        <span class="jp-invoice__meta-label">発行日</span>
+                                        <span class="jp-invoice__meta-value">
+                                            <span t-esc="o._acoona_invoice_format_date(o.invoice_date)"/>
+                                        </span>
+                                    </li>
+                                    <li t-if="o.l10n_jp_transaction_date">
+                                        <span class="jp-invoice__meta-label">取引日</span>
+                                        <span class="jp-invoice__meta-value">
+                                            <span t-esc="o._acoona_invoice_format_date(o.l10n_jp_transaction_date)"/>
+                                        </span>
+                                    </li>
+                                    <li t-if="o.name and o.name != '/'">
+                                        <span class="jp-invoice__meta-label">請求書番号</span>
+                                        <span class="jp-invoice__meta-value" t-esc="o.name"/>
+                                    </li>
+                                <li t-if="company.l10n_jp_registration_number">
+                                    <span class="jp-invoice__meta-label">登録番号</span>
+                                    <span class="jp-invoice__meta-value" t-esc="company.l10n_jp_registration_number"/>
                                 </li>
-                                <li><span t-esc="bank.acc_number"/></li>
                             </ul>
+                            <div class="jp-invoice__company">
+                                <div class="jp-invoice__company-name" t-esc="company.name"/>
+                                <t t-set="company_address_lines" t-value="o._get_jp_address_lines(company.partner_id)"/>
+                                <t t-foreach="company_address_lines" t-as="addr_line">
+                                    <div t-esc="addr_line"/>
+                                </t>
+                                <div t-if="company.phone">
+                                    電話: <span t-esc="company.phone"/>
+                                </div>
+                                <div t-if="company.email">
+                                    メール: <span t-esc="company.email"/>
+                                </div>
+                                <t t-foreach="o._acoona_invoice_responsible_lines()" t-as="responsible">
+                                    <div t-esc="responsible"/>
+                                </t>
+                            </div>
                         </div>
                     </div>
-                </t>
+
+                    <div class="jp-invoice__payment-block" t-if="bank_info">
+                        <div class="jp-invoice__payment-row">
+                            <div class="jp-invoice__payment-label">振込先</div>
+                            <div class="jp-invoice__payment-body">
+                                <t t-foreach="bank_info.get('lines', [])" t-as="bank_line">
+                                    <div t-esc="bank_line"/>
+                                </t>
+                            </div>
+                        </div>
+                        <div class="jp-invoice__payment-row" t-if="bank_info.get('note')">
+                            <div class="jp-invoice__payment-label">備考</div>
+                            <div class="jp-invoice__payment-body">
+                                <span t-esc="bank_info['note']"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="jp-invoice__lines">
+                        <thead>
+                            <tr>
+                                <th>内容</th>
+                                <th>数量</th>
+                                <th>単位</th>
+                                <th>単価（税抜）</th>
+                                <th>値引</th>
+                                <th>税率</th>
+                                <th>金額（税抜）</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="lines" t-as="line">
+                                <tr t-if="line.display_type not in ('line_section', 'line_note')">
+                                    <td>
+                                        <t t-if="line.name">
+                                            <span t-field="line.name" t-options='{"widget": "text"}'/>
+                                        </t>
+                                        <t t-else="">
+                                            <span>-</span>
+                                        </t>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="line.quantity"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="line.product_uom_id.name or ''"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="line.price_unit" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                    <td class="text-end">
+                                        <t t-if="line.discount">
+                                            <span t-esc="'{:.2f}%'.format(line.discount)"/>
+                                        </t>
+                                        <t t-else="">
+                                            <span>-</span>
+                                        </t>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-esc="o._get_jp_line_tax_display(line)"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                        <div class="row jp-invoice__summary-block">
+                            <div class="col-6">
+                                <table class="jp-invoice__tax-summary" t-if="tax_summary">
+                                    <thead>
+                                        <tr>
+                                            <th>税率区分</th>
+                                            <th>消費税</th>
+                                            <th>金額（税抜）</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="tax_summary" t-as="summary">
+                                            <tr>
+                                                <td t-esc="summary['name']"/>
+                                                <td class="text-end">
+                                                    <span t-esc="summary['tax']" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                                </td>
+                                                <td class="text-end">
+                                                    <span t-esc="summary['base']" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                        </div>
+                        <div class="col-6">
+                            <table class="jp-invoice__totals">
+                                <tbody>
+                                    <tr>
+                                        <th>小計</th>
+                                        <td class="text-end">
+                                            <span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>消費税</th>
+                                        <td class="text-end">
+                                            <span t-field="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>合計</th>
+                                        <td class="text-end">
+                                            <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="jp-invoice__notes" t-if="o.narration or company.acoona_invoice_footer_note">
+                        <div class="jp-invoice__notes-title">備考</div>
+                        <div class="jp-invoice__notes-body">
+                            <p t-if="o.narration" t-field="o.narration" t-options='{"widget": "text"}'/>
+                            <p t-if="company.acoona_invoice_footer_note" t-esc="company.acoona_invoice_footer_note"/>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
             </t>
         </xpath>
     </template>

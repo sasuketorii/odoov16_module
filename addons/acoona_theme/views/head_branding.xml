@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 優先順位を最高に設定してOdooのデフォルトを確実に上書き -->
+    <template id="acoona_branding_layout"
+              inherit_id="web.layout"
+              name="Acoona Branding Layout"
+              priority="999">
+        <xpath expr="//title" position="replace">
+            <title>Acoona</title>
+        </xpath>
+        <xpath expr="//link[@rel='shortcut icon']" position="replace">
+            <link rel="icon" type="image/png"
+                  href="/acoona_theme/static/src/img/ACOONA-A.png"/>
+            <link rel="shortcut icon" type="image/png"
+                  href="/acoona_theme/static/src/img/ACOONA-A.png"/>
+        </xpath>
+    </template>
+
+    <!-- webclient_bootstrapには直接headがないため、JSに任せる -->
+</odoo>

@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data noupdate="0">
+    <record id="mail_template_portal_user_invite" model="mail.template">
+        <field name="name">JP: ポータル - ユーザー招待</field>
+        <field name="subject">JP: ポータル - ユーザー招待</field>
+        <field name="model_id" ref="portal.model_portal_wizard_user"/>
+        <field name="description">ユーザアカウントを作成するための連絡先への招待Eメール</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html" type="html">
+            <table border="0" cellpadding="0" cellspacing="0" style="padding:16px 0 0 0;box-sizing:border-box;caption-side:bottom;padding-top: 16px; background-color: #F1F1F1; font-family:'Noto Sans JP', Arial, sans-serif; font-weight: bold; color: #454748; width: 100%; border-collapse:separate;" width="100%"><tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+            <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; padding: 16px; background-color: white; color: #454748; border-collapse: separate; font-family: 'Noto Sans JP', Arial, sans-serif; font-weight: bold;">
+            <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                
+                <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                    <td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;min-width:590px">
+                        <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; min-width: 590px; background-color: white; padding: 0px 8px; border-collapse: separate; color: #454748; font-family: 'Noto Sans JP', Arial, sans-serif; font-weight: bold;">
+                            <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td valign="middle" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                                <span style="font-size: 10px; font-weight: bold;">アカウント情報</span><br/>
+                                <span style="font-size: 20px; font-weight: bold;" t-out="object.user_id.name or ''">山田 太郎</span>
+                            </td><td valign="middle" align="right" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                                <img t-attf-src="/logo.png?company={{ object.user_id.company_id.id }}" style="box-sizing:border-box;vertical-align:middle;padding: 0px; margin: 0px; height: auto; width: 80px;" t-att-alt="object.user_id.company_id.name" width="80"/>
+                            </td></tr>
+                            <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td colspan="2" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;text-align:center">
+                              <hr width="100%" style="border-style:none;border-left-width:medium;border-bottom-width:medium;border-right-width:medium;border-top-width:medium;box-sizing:border-box;height:1px;opacity:0.25;color:#454748;background-color:#cccccc;border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0;margin:16px 0px"/>
+                            </td></tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+                
+                <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                    <td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;min-width:590px">
+                        <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; min-width: 590px; background-color: white; padding: 0px 8px; border-collapse: separate; color: #454748; font-family: 'Noto Sans JP', Arial, sans-serif; font-weight: bold;">
+                            <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td valign="top" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;font-size:13px;font-weight:bold">
+                                <div>
+                                    <t t-out="object.user_id.name or ''">山田 太郎</t> 様<br/> <br/>
+                                    <t t-out="object.user_id.company_id.name">ACOONA</t>のポータルサイトへようこそ！<br/><br/>
+                                    以下のログイン情報でアカウントが作成されました：<t t-out="object.user_id.login">demo</t><br/><br/>
+                                    下のボタンをクリックして、パスワードを設定しアカウントを有効化してください。
+                                    <div style="margin: 16px 0px 16px 0px; text-align: left;">
+                                        <a t-att-href="object.user_id.signup_url" style="box-sizing:border-box;display: inline-block; padding: 15px 25px; text-decoration: none; font-size: 12px; background-color: #007fff; color: #fff; border-radius: 5px;">
+                                            <strong style="box-sizing:border-box;font-weight:bolder;">アカウントを有効化する</strong>
+                                        </a></div>
+                                    <t t-out="object.wizard_id.welcome_message or ''">当社のポータルサイトをご利用いただきありがとうございます。</t>
+                                </div>
+                            </td></tr>
+                            <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;text-align:center">
+                              <hr width="100%" style="border-style:none;border-left-width:medium;border-bottom-width:medium;border-right-width:medium;border-top-width:medium;box-sizing:border-box;height:1px;opacity:0.25;color:#454748;background-color:#cccccc;border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0;margin:16px 0px"/>
+                            </td></tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+                
+                <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                    <td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;min-width:590px">
+                        <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; min-width: 590px; background-color: white; font-size: 11px; font-weight: bold; padding: 0px 8px; border-collapse: separate; color: #454748; font-family: 'Noto Sans JP', Arial, sans-serif;">
+                            <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                            </tbody></table>
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+            </td></tr>
+            
+            <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;min-width:590px">
+                <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; min-width: 590px; background-color: #f1f1f1; color: #454748; padding: 8px; border-collapse: separate; font-family: 'Noto Sans JP', Arial, sans-serif; font-weight: bold;">
+                  <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;text-align:center;font-size:13px;font-weight:bold">
+                    Powered by <a target="_blank" href="https://company.rev-c.com/" style="text-decoration:none;box-sizing:border-box;color: #007fff;">ACOONA</a>
+                  </td></tr>
+                </tbody></table>
+            </td></tr>
+            </tbody></table><p style="margin:0px 0 12px 0;box-sizing:border-box;"><br/></p>
+        </field>
+    </record>
+
+    <record id="mail_template_purchase_reminder" model="mail.template">
+        <field name="name">JP: 仕入/発注 - 仕入先へのリマインダー</field>
+        <field name="subject">JP: 仕入/発注 - 仕入先へのリマインダー</field>
+        <field name="model_id" ref="purchase.model_purchase_order"/>
+        <field name="description">仕入/ 発注のオーダー設定に基づいて、予定入荷日より前に仕入先に送信する</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="report_template" ref="purchase.report_purchase_quotation"/>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="box-sizing:border-box;margin: 0px; padding: 0px; font-size: 13px;">
+                平素より大変お世話になります。<br/>
+                    <t t-out="object.company_id.name"/> <t t-out="object.create_uid.name"/>でございます。<br/>
+                    <br/>
+                    この度は、以下で予定されている注文についての再確認を自動で送信しています。<br/>
+                     <t t-if="object.date_planned">
+                    予定されている納品希望日: <span style="font-weight:bold;" t-out="format_date(object.get_localized_date_planned())"/>
+                    </t><br/>
+                    <br/>
+                     お手数ではございますが、本リマインダーに添付されている<br/>貴社からの金額をお見積りをご確認の上、可否のご一報をいただけますと幸いです。<br/>
+                    <br/>
+                    ご不明な点、ご質問などございましたら、ご遠慮なくお申し付けくださいませ。<br/>
+                    何卒よろしくお願い申し上げます。<br/>
+                    <br/>
+                    <br/>
+                    <t t-out="object.create_uid.signature"/><br/>
+                    <br/>
+                </p>
+            </div>
+        </field>
+    </record>
+
+    <record id="mail_template_purchase_rfq" model="mail.template">
+        <field name="name">JP: 仕入れ発注 - 見積依頼</field>
+        <field name="subject">JP: 仕入れ発注 - 見積依頼</field>
+        <field name="model_id" ref="purchase.model_purchase_order"/>
+        <field name="description">仕入先に見積依頼を手動で送信済</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="report_template" ref="purchase.report_purchase_quotation"/>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="box-sizing:border-box;margin: 0px; padding: 0px; font-size: 13px;">
+                平素より大変お世話になります。<br/>
+                    <t t-out="object.company_id.name"/> <t t-out="object.create_uid.name"/>でございます。<br/>
+                    <br/>
+                    この度は、以下で予定されている注文についての再確認を自動で送信しています。<br/>
+                     <t t-if="object.date_planned">
+                    予定されている納品希望日: <span style="font-weight:bold;" t-out="format_date(object.get_localized_date_planned())"/>
+                    </t><br/>
+                    <br/>
+                     お手数ではございますが、本リマインダーに添付されている<br/>貴社からの金額をお見積りをご確認の上、可否のご一報をいただけますと幸いです。<br/>
+                    <br/>
+                    ご不明な点、ご質問などございましたら、ご遠慮なくお申し付けくださいませ。<br/>
+                    何卒よろしくお願い申し上げます。<br/>
+                    <br/>
+                    <br/>
+                    <t t-out="object.create_uid.signature"/><br/>
+                    <br/>
+                </p>
+            </div>
+        </field>
+    </record>
+
+    <record id="mail_template_purchase_order" model="mail.template">
+        <field name="name">JP: 仕入発注-オーダー</field>
+        <field name="subject">JP: 仕入発注-オーダー</field>
+        <field name="model_id" ref="purchase.model_purchase_order"/>
+        <field name="description">仕入先に購買オーダを添付で送信済</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="report_template" ref="purchase.report_purchase_quotation"/>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="box-sizing:border-box;margin: 0px; padding: 0px; font-size: 13px;">
+            平素より大変お世話になります。<br/>
+                    <t t-out="object.company_id.name"/> <t t-out="object.create_uid.name"/>でございます。<br/>
+                    <br/>
+                    この度は、下記内容にて発注させていただきたく、注文書を添付にてお送り申し上げます。<br/>
+                    <br/>
+                    【注文内容】<br/>
+                    - 発注番号: <span style="font-weight:bold;" t-out="object.name"/><br/>
+                    - 合計金額: <span style="font-weight:bold;" t-out="format_amount(object.amount_total, object.currency_id)"/>(税込)<br/>
+                    - 納品希望日: <span style="font-weight:bold;" t-out="format_date(object.get_localized_date_planned())"/><br/>
+                    <br/>
+                    <br/>
+                    お手数ではございますが、本注文書をご確認のうえ、受領のご一報をいただけますと幸いです。<br/>
+                    <br/>
+                    ご不明な点などございましたら、ご遠慮なくお申し付けくださいませ。<br/>
+                    何卒よろしくお願い申し上げます。<br/><br/><br/><t t-out="object.create_uid.signature"/><br/>
+                    <br/>
+            </p>
+            </div>
+            
+                 
+            
+                 
+        </field>
+    </record>
+
+    <record id="mail_template_payment_receipt" model="mail.template">
+        <field name="name">JP: 支払 - 支払領収書</field>
+        <field name="subject">JP: 支払 - 支払領収書</field>
+        <field name="model_id" ref="account.model_account_payment"/>
+        <field name="description">支払アクションに「メールで領収書」をクリック時、手動で送信します</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="report_template" ref="account.action_report_payment_receipt"/>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="box-sizing:border-box;margin: 0px; padding: 0px; font-size: 13px;">
+                平素より大変お世話になります。<br/>
+                    <t t-out="object.company_id.name"/> <t t-out="object.create_uid.name"/>でございます。<br/>
+                    <br/>
+                    この度は、下記の通り受領致しましたので、ご連絡を差し上げました。<br/>
+                    <br/>
+                    【受領内容】<br/>
+                    - 受領金額:<span style="font-weight:bold;" t-out="format_amount(object.amount, object.currency_id)"/>(税込)<br/>
+                    <br/>
+                    <br/>
+                    ご不明な点などございましたら、ご遠慮なくお申し付けくださいませ。<br/>
+                    何卒よろしくお願い申し上げます。<br/>
+                    <br/>
+                    <br/>
+                    <t t-out="object.create_uid.signature"/><br/>
+                    <br/>
+                </p>
+            </div>
+        </field>
+    </record>
+
+    <record id="mail_template_account_refund" model="mail.template">
+        <field name="name">JP: 修正伝票: 送信</field>
+        <field name="subject">JP: 修正伝票: 送信</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="description">修正伝票を添付して顧客に送信</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="report_template" ref="account.account_invoices"/>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="box-sizing:border-box;margin: 0px; padding: 0px; font-size: 13px;">
+                平素より大変お世話になります。<br/>
+                    <t t-out="object.company_id.name"/> <t t-out="object.create_uid.name"/>でございます。<br/>
+                    <br/>
+                    この度は、お取引に不具合がございまして、<br/>
+                    修正伝票をお送りさせていただきたく思いご連絡させていただきました。<br/>
+                    <br/>
+                    修正金額: <span style="font-weight:bold;" t-out="format_amount(object.amount_total, object.currency_id)"/><br/>
+                    <br/>
+                     お手数ではございますが、本修正伝票をご確認のうえ、可否のご一報をいただけますと幸いです。<br/>
+                    <br/>
+                    ご不明な点、ご質問などございましたら、ご遠慮なくお申し付けくださいませ。<br/>
+                    何卒よろしくお願い申し上げます。<br/>
+                    <br/>
+                    <br/>
+                    <t t-out="object.create_uid.signature"/><br/>
+                    <br/>
+                </p>
+            </div>
+        </field>
+    </record>
+
+    <record id="mail_template_account_invoice" model="mail.template">
+        <field name="name">JP: 請求書 - 送信</field>
+        <field name="subject">JP: 請求書 - 送信</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="description">請求書が添付されて、お客様に送信しました</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="report_template" ref="account.account_invoices"/>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="box-sizing:border-box;margin: 0px; padding: 0px; font-size: 13px;">
+                平素より大変お世話になります。<br/>
+                    <t t-out="object.company_id.name"/> <t t-out="object.create_uid.name"/>でございます。<br/>
+                    <br/>
+                    この度は、下記の通りご請求書を送付させていただきますので、<br/>
+                    ご確認くださいますようお願い申し上げます。<br/>
+                    <br/>
+                    【請求内容】<br/>
+                    - ご請求金額: <span style="font-weight:bold;" t-out="format_amount(object.amount_total, object.currency_id)">(税込)</span><br/>
+                    - 内未消込額: <span style="font-weight:bold;" t-out="format_amount(object.amount_residual, object.currency_id)">(税込)</span><br/>
+                    - お支払い期限: <t t-if="object.invoice_date_due"><span t-esc="object.invoice_date_due.strftime('%Y&#x5E74;%m&#x6708;%d&#x65E5;')"/></t><br/>
+                    <br/>
+                    お手数ではございますが、本請求書をご確認のうえ、受領とご確認のご一報をいただけますと幸いです。<br/>
+                    <br/>
+                    ご不明な点などございましたら、ご遠慮なくお申し付けくださいませ。<br/>
+                    何卒よろしくお願い申し上げます。<br/>
+                    <br/>
+                    <br/>
+                    <t t-out="object.create_uid.signature"/><br/>
+                    <br/>
+                </p>
+            </div>
+        </field>
+    </record>
+
+    <record id="mail_template_user_password_reset" model="mail.template">
+        <field name="name">JP: 設定 - ユーザー/パスワードリセット</field>
+        <field name="subject">JP: 設定 - ユーザー/パスワードリセット</field>
+        <field name="model_id" ref="base.model_res_users"/>
+        <field name="description">パスワードリセットをリクエストしたユーザに送信される</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html" type="html">
+            <table border="0" cellpadding="0" cellspacing="0" style="padding:16px 0 0 0;box-sizing:border-box;caption-side:bottom;padding-top: 16px; background-color: #FFFFFF; font-family:'Noto Sans JP', Arial, sans-serif; font-weight: bold; color: #454748; width: 100%; border-collapse:separate;" width="100%"><tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+            <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; padding: 16px; background-color: #ffffff; color: #454748; border-collapse: separate; font-family: 'Noto Sans JP', Arial, sans-serif; font-weight: bold;">
+            <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                
+                <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                    <td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;min-width:590px">
+                        <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; min-width: 590px; background-color: white; padding: 0px 8px; border-collapse: separate; color: #454748; font-family: 'Noto Sans JP', Arial, sans-serif; font-weight: bold;">
+                            <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td valign="middle" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                                <span style="font-size: 10px; font-weight: bold;">アカウント</span><br/>
+                                <span style="font-size: 20px; font-weight: bold;">
+                                    <t t-out="object.name or ''">山田 太郎</t>
+                                </span>
+                            </td><td valign="middle" align="right" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                                <img t-attf-src="/logo.png?company={{ object.company_id.id }}" style="box-sizing:border-box;vertical-align:middle;padding: 0px; margin: 0px; height: auto; width: 80px;" t-att-alt="object.company_id.name" width="80"/>
+                            </td></tr>
+                            <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td colspan="2" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;text-align:center">
+                              <hr width="100%" style="border-style:none;border-left-width:medium;border-bottom-width:medium;border-right-width:medium;border-top-width:medium;box-sizing:border-box;height:1px;opacity:0.25;color:#454748;background-color:#cccccc;border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0;margin:16px 0px"/>
+                            </td></tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+                
+                <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                    <td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;min-width:590px">
+                        <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; min-width: 590px; background-color: white; padding: 0px 8px; border-collapse: separate; color: #454748; font-family: 'Noto Sans JP', Arial, sans-serif; font-weight: bold;">
+                            <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td valign="top" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;font-size:13px;font-weight:bold">
+                                <div>
+                                     <t t-out="object.name or ''">山田 太郎</t>様、<br/><br/>
+                                    ACOONAアカウントのパスワードリセットの申請を受け付けました。
+                                    パスワードの再設定をご希望の場合は以下URLをクリックし、新しいパスワードをご登録ください。※URLの期限は24時間です。<br/><br/>
+                                    <div style="margin: 16px 0px 16px 0px; text-align: left;">
+                                        <a t-att-href="object.signup_url" style="box-sizing:border-box;background-color: #007fff; padding: 15px 25px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                            パスワード変更
+                                        </a>
+                                    </div>
+                                    <br/>
+                                    本Eメールにお心当たりの無い場合は破棄してください。
+                                    <t t-if="user.signature">
+                                        <br/>
+                                        <t t-out="user.signature or ''">--<br/>ACOONA AI</t>
+                                    </t>
+                                </div>
+                            </td></tr>
+                            <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;text-align:center">
+                              <hr width="100%" style="border-style:none;border-left-width:medium;border-bottom-width:medium;border-right-width:medium;border-top-width:medium;box-sizing:border-box;height:1px;opacity:0.25;color:#454748;background-color:#cccccc;border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0;margin:16px 0px"/>
+                            </td></tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+                
+                
+            </tbody>
+            </table>
+            </td></tr>
+            
+            <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;min-width:590px">
+                <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; min-width: 590px; background-color: #f1f1f1; color: #454748; padding: 8px; border-collapse: separate; font-family: 'Noto Sans JP', Arial, sans-serif; font-weight: bold;">
+                  <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;text-align:center;font-size:13px;font-weight:bold">
+                    Powered by <a target="_blank" href="https://company.rev-c.com/" style="text-decoration:none;box-sizing:border-box;color: #007fff;">ACOONA</a>
+                  </td></tr>
+                </tbody></table>
+            </td></tr>
+            </tbody></table>
+        </field>
+    </record>
+
+    <record id="mail_template_user_signup" model="mail.template">
+        <field name="name">JP: 設定 - 新規サインアップ</field>
+        <field name="subject">JP: 設定 - 新規サインアップ</field>
+        <field name="model_id" ref="base.model_res_users"/>
+        <field name="description">招待した後に新しいユーザーに送信される</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html" type="html">
+            <table border="0" cellpadding="0" cellspacing="0" style="padding:16px 0 0 0;box-sizing:border-box;caption-side:bottom;padding-top: 16px; background-color: #FFFFFF; font-family:'Noto Sans JP', Arial, sans-serif; font-weight: bold; color: #454748; width: 100%; border-collapse:separate;" width="100%"><tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+            <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; padding: 16px; background-color: #ffffff; color: #454748; border-collapse: separate; font-family: 'Noto Sans JP', Arial, sans-serif; font-weight: bold;">
+            <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                
+                <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                    <td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;min-width:590px">
+                        <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; min-width: 590px; background-color: white; padding: 0px 8px; border-collapse: separate; color: #454748; font-family: 'Noto Sans JP', Arial, sans-serif; font-weight: bold;">
+                            <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td valign="middle" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                                <span style="font-size: 10px; font-weight: bold;">ACOONAへようこそ</span><br/>
+                                <span style="font-size: 20px; font-weight: bold;">
+                                    <t t-out="object.name or ''">山田 太郎</t>
+                                </span>
+                            </td><td valign="middle" align="right" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                                <img t-attf-src="/logo.png?company={{ object.company_id.id }}" style="box-sizing:border-box;vertical-align:middle;padding: 0px; margin: 0px; height: auto; width: 80px;" t-att-alt="object.company_id.name" width="80"/>
+                            </td></tr>
+                            <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td colspan="2" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;text-align:center">
+                              <hr width="100%" style="border-style:none;border-left-width:medium;border-bottom-width:medium;border-right-width:medium;border-top-width:medium;box-sizing:border-box;height:1px;opacity:0.25;color:#454748;background-color:#cccccc;border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0;margin:16px 0px"/>
+                            </td></tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+                
+                <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                    <td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;min-width:590px">
+                        <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; min-width: 590px; background-color: white; padding: 0px 8px; border-collapse: separate; color: #454748; font-family: 'Noto Sans JP', Arial, sans-serif; font-weight: bold;">
+                            <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td valign="top" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;font-size:13px;font-weight:bold">
+                                <div>
+                                    <t t-out="object.name or ''">山田 太郎</t>様、<br/><br/>
+                                    国際会計システムACOONAから招待を受けています。
+                                    <br/><br/>
+                                    <div style="margin: 16px 0px 16px 0px; text-align: left;">
+                                        <a t-att-href="object.signup_url" style="box-sizing:border-box;background-color: #007fff; padding: 15px 25px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                            招待を受ける
+                                        </a>
+                                    </div>
+                                    <br/>
+                                    <t t-set="website_url" t-value="object.get_base_url()"/>
+                                    URL： <b style="box-sizing:border-box;font-weight:bolder;"><a t-att-href="website_url" t-out="website_url or ''" style="text-decoration: none; box-sizing: border-box; color: #454748;">https://company.rev-c.com</a></b><br/>
+                                    ログインメール： <b style="box-sizing:border-box;font-weight:bolder;"><a t-attf-href="/web/login?login={{ object.email }}" target="_blank" t-out="object.email or ''" style="text-decoration: none; box-sizing: border-box; color: #454748;">sample@example.com</a></b><br/><br/>
+                                    ご存知ですか？ACOONAは、国際会計システムとして<br/>
+                                    世界中の顧客を相手にすることができるサービスです。<br/><br/>
+                                    現在の使用版は、日本版です。グローバル展開にて国際会計を可能にしたい場合は<br/>
+                                    オーダーメイドでの開発依頼を検討してください。<br/><br/>
+                                    ACOONAで、日本のビジネスを世界に。<br/><br/>
+                                    --<br/>ACOONA AI
+                                </div>
+                            </td></tr>
+                            <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;text-align:center">
+                              <hr width="100%" style="border-style:none;border-left-width:medium;border-bottom-width:medium;border-right-width:medium;border-top-width:medium;box-sizing:border-box;height:1px;opacity:0.25;color:#454748;background-color:#cccccc;border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0;margin:16px 0px"/>
+                            </td></tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+                
+            </tbody>
+            </table>
+            </td></tr>
+            
+            <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;min-width:590px">
+                <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; min-width: 590px; background-color: #f1f1f1; color: #454748; padding: 8px; border-collapse: separate; font-family: 'Noto Sans JP', Arial, sans-serif; font-weight: bold;">
+                  <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;text-align:center;font-size:13px;font-weight:bold">
+                    Powered by <a target="_blank" href="https://company.rev-c.com/" style="text-decoration:none;box-sizing:border-box;color: #007fff;">ACOONA</a>
+                  </td></tr>
+                </tbody></table>
+            </td></tr>
+            </tbody></table>
+        </field>
+    </record>
+
+    <record id="mail_template_user_invite" model="mail.template">
+        <field name="name">JP: 設定 - 新規ユーザー招待</field>
+        <field name="subject">JP: 設定 - 新規ユーザー招待</field>
+        <field name="model_id" ref="base.model_res_users"/>
+        <field name="description">自分で登録したポータルユーザに送信される</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html" type="html">
+            <table border="0" cellpadding="0" cellspacing="0" style="padding:16px 0 0 0;box-sizing:border-box;caption-side:bottom;padding-top: 16px; background-color: #FFFFFF; font-family:'Noto Sans JP', Arial, sans-serif; font-weight: bold; color: #454748; width: 100%; border-collapse:separate;" width="100%"><tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+            <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; padding: 16px; background-color: #ffffff; color: #454748; border-collapse: separate; font-family: 'Noto Sans JP', Arial, sans-serif; font-weight: bold;">
+            <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                
+                <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                    <td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;min-width:590px">
+                        <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; min-width: 590px; background-color: white; padding: 0px 8px; border-collapse: separate; color: #454748; font-family: 'Noto Sans JP', Arial, sans-serif; font-weight: bold;">
+                            <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><tr style="border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;border-style:none;box-sizing:border-box;border-width:0px;height:49.5px"><td valign="middle" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                                <span style="font-size: 10px; font-weight: bold;">アカウント</span><br/>
+                                <span style="font-size: 20px; font-weight: bold;">
+                                    <t t-out="object.name or ''">山田 太郎</t>
+                                </span>
+                            </td><td valign="middle" align="right" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                                <img t-attf-src="/logo.png?company={{ object.company_id.id }}" style="box-sizing:border-box;vertical-align:middle;padding: 0px; margin: 0px; height: auto; width: 80px;" t-att-alt="object.company_id.name" width="80"/>
+                            </td></tr>
+                            <tr style="border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;border-style:none;box-sizing:border-box;border-width:0px;height:33px"><td colspan="2" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;text-align:center">
+                              <hr width="100%" style="border-style:none;border-left-width:medium;border-bottom-width:medium;border-right-width:medium;border-top-width:medium;box-sizing:border-box;height:1px;opacity:0.25;color:#454748;background-color:#cccccc;border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0;margin:16px 0px"/>
+                            </td></tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+                
+                <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                    <td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;min-width:590px">
+                        <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; min-width: 590px; background-color: white; padding: 0px 8px; border-collapse: separate; color: #454748; font-family: 'Noto Sans JP', Arial, sans-serif; font-weight: bold;">
+                            <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td valign="top" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;font-size:13px;font-weight:bold">
+                                <div>
+                                    <t t-out="object.name or ''">山田 太郎</t>様、<br/>
+                                    ACOONAのアカウント作成が完了しました！<br/><br/>
+                                    ログインID: <strong style="box-sizing:border-box;font-weight:bolder;"><t t-out="object.email or ''">sample@example.com</t></strong><br/><br/>
+                                    アカウントへのアクセス 
+                                    <div style="margin: 16px 0px 16px 0px; text-align: left;">
+                                        <a t-attf-href="/web/login?auth_login={{object.email}}" style="box-sizing:border-box;background-color: #007fff; padding: 15px 25px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                            マイアカウント
+                                        </a>
+                                    </div><br/>
+                                    <t t-if="user.signature"><br/>
+                                        <t t-out="user.signature or ''">--<br/>ACOONA AI</t>
+                                    </t>
+                                </div>
+                            </td></tr>
+                            <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;text-align:center">
+                              <hr width="100%" style="border-style:none;border-left-width:medium;border-bottom-width:medium;border-right-width:medium;border-top-width:medium;box-sizing:border-box;height:1px;opacity:0.25;color:#454748;background-color:#cccccc;border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0;margin:16px 0px"/>
+                            </td></tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+                
+                
+            </tbody>
+            </table>
+            </td></tr>
+            
+            <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;min-width:590px">
+                <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; min-width: 590px; background-color: #f1f1f1; color: #454748; padding: 8px; border-collapse: separate; font-family: 'Noto Sans JP', Arial, sans-serif; font-weight: bold;">
+                  <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;text-align:center;font-size:13px;font-weight:bold">
+                    Powered by <a target="_blank" href="https://company.rev-c.com/" style="text-decoration:none;box-sizing:border-box;color: #007fff;">ACOONA</a>
+                  </td></tr>
+                </tbody></table>
+            </td></tr>
+            </tbody></table>
+        </field>
+    </record>
+
+    <record id="mail_template_user_unregistered_reminder" model="mail.template">
+        <field name="name">JP: 設定 - 未登録ユーザーのリマインド</field>
+        <field name="subject">JP: 設定 - 未登録ユーザーのリマインド</field>
+        <field name="model_id" ref="base.model_res_users"/>
+        <field name="description">新しいユーザが招待に応じなかった場合、自動的に管理者に送信される</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html" type="html">
+            <table border="0" cellpadding="0" cellspacing="0" style="box-sizing:border-box;caption-side:bottom;background-color: #FFFFFF; font-family:'Noto Sans JP', Arial, sans-serif; font-weight: bold; color: #454748; width: 100%; border-collapse:separate;" width="100%"><tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+            <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; padding: 16px; background-color: #ffffff; color: #454748; border-collapse: separate; font-family: 'Noto Sans JP', Arial, sans-serif; font-weight: bold;">
+            <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                
+                <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px">
+                    <td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;min-width:590px">
+                        <t t-set="invited_users" t-value="ctx.get('invited_users', [])"/><table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; min-width: 590px; background-color: white; padding: 0px 8px; border-collapse: separate; color: #454748; font-family: 'Noto Sans JP', Arial, sans-serif; font-weight: bold;">
+                            
+                            <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;text-align:left">
+                                <span style="font-size: 20px; font-weight: bold;">
+                                    承認待ちのユーザーの招待について
+                                </span><br/><br/>
+                            </td>
+                            </tr><tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td valign="top" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;font-size:13px;font-weight:bold">
+                                <div>
+                                    <t t-out="object.name or ''">山田 太郎</t>様、<br/><br/>
+                                    招待したユーザーで登録が完了していないユーザーがいます：
+                                    <ul style="padding:0 0 0 24px;margin:0px 0 12px 0;box-sizing:border-box;">
+                                        <t t-foreach="invited_users" t-as="invited_user">
+                                            <li t-out="invited_user or ''">sample@example.com</li>
+                                        </t>
+                                    </ul>
+                                    登録を完了して、共に作業を開始してください！<br/><br/>
+                                    --<br/>ACOONA AI
+                                </div>
+                            </td></tr>
+                            <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;text-align:center">
+                              <hr width="100%" style="border-style:none;border-left-width:medium;border-bottom-width:medium;border-right-width:medium;border-top-width:medium;box-sizing:border-box;height:1px;opacity:0.25;color:#454748;background-color:#cccccc;border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0;margin:16px 0px"/>
+                            </td></tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+            </td></tr>
+            
+            <tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td align="center" style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;min-width:590px">
+                <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing: border-box; caption-side: bottom; min-width: 590px; background-color: #f1f1f1; color: #454748; padding: 8px; border-collapse: separate; font-family: 'Noto Sans JP', Arial, sans-serif; font-weight: bold;">
+                  <tbody style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><tr style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px"><td style="border-style:none;box-sizing:border-box;border-left-width:0px;border-bottom-width:0px;border-right-width:0px;border-top-width:0px;text-align:center;font-size:13px;font-weight:bold">
+                    Powered by <a target="_blank" href="https://company.rev-c.com/" style="text-decoration:none;box-sizing:border-box;color: #007fff;">ACOONA</a>
+                  </td></tr>
+                </tbody></table>
+            </td></tr>
+            </tbody></table>
+        </field>
+    </record>
+
+    <record id="mail_template_sale_order_cancel" model="mail.template">
+        <field name="name">JP: 販売 - オーダーキャンセル</field>
+        <field name="subject">JP: 販売 - オーダーキャンセル</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="description">オーダをキャンセルした際、顧客に自動的に送られる</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="box-sizing:border-box;margin: 0px; padding: 0px; font-size: 13px;">
+                平素より大変お世話になります。<br/>
+                    <t t-out="object.company_id.name"/> <t t-out="object.create_uid.name"/>でございます。<br/>
+                    <br/>
+                    お客様のオーダーがキャンセルされたので、ご連絡いたします。<br/>
+                    <br/>
+                    【オーダーキャンセルの詳細】<br/>
+                    - 識別番号: <span style="font-weight:bold;"><t t-out="object.name"/></span><br/>
+                    <br/>
+                    今後の請求は一切ございませんので、ご安心ください。<br/>
+                    <br/>
+                    ご不明な点などございましたら、ご遠慮なくお申し付けくださいませ。<br/>
+                    何卒よろしくお願い申し上げます。<br/>
+                    <br/>
+                    <br/>
+                    <t t-out="object.create_uid.signature"/><br/>
+                    <br/>
+                </p>
+            </div>
+        </field>
+    </record>
+
+    <record id="mail_template_sale_quotation" model="mail.template">
+        <field name="name">JP: 販売 - 見積送付</field>
+        <field name="subject">JP: 販売 - 見積送付</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="description">営業担当者によって見積書や見積送状を見込み客に送付する際に使用される</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="report_template" ref="sale.action_report_saleorder"/>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    <t t-set="doc_name" t-value="'見積書' if object.state in ('draft', 'sent') else 'ご注文'"/>
+                    平素より大変お世話になっております。<br/>
+                    <t t-out="object.company_id.name or ''"/> <t t-out="object.create_uid.name or ''"/>でございます。<br/>
+                    <br/>
+                    <t t-if="ctx.get('proforma')">
+                        プロフォーマ請求書として<t t-out="doc_name or ''"/> <span style="font-weight:bold;" t-out="object.name or ''"></span>
+                        <t t-if="object.origin">
+                            （参照番号: <t t-out="object.origin or ''"/>）
+                        </t>
+                        をお送りいたします。金額は
+                        <span style="font-weight:bold;" t-out="format_amount(object.amount_total, object.pricelist_id.currency_id) or ''"></span>
+                        となります。<br/>
+                    </t>
+                    <t t-else="">
+                        添付の<t t-out="doc_name or ''"/> <span style="font-weight:bold;" t-out="object.name or ''"></span>
+                        <t t-if="object.origin">
+                            （参照番号: <t t-out="object.origin or ''"/>）
+                        </t>
+                        をご確認ください。金額は
+                        <span style="font-weight:bold;" t-out="format_amount(object.amount_total, object.pricelist_id.currency_id) or ''"></span>
+                        です。<br/>
+                    </t>
+                    <br/>
+                    ご不明点やご相談等がございましたら、どうぞお気軽にお申し付けください。<br/>
+                    <t t-if="not is_html_empty(object.user_id.signature)">
+                        <br/>
+                        <t t-out="object.user_id.signature or ''"/>
+                    </t>
+                    <br/>
+                </p>
+            </div>
+        </field>
+    </record>
+
+    <record id="mail_template_sale_order_confirmed" model="mail.template">
+        <field name="name">JP: 販売 - 注文が確定</field>
+        <field name="subject">JP: 販売 - 注文が確定</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="description">オーダを確定した際、顧客に自動的に送られる</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="report_template" ref="sale.action_report_saleorder"/>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="box-sizing:border-box;margin: 0px; padding: 0px; font-size: 12px;">
+                    平素より大変お世話になっております。<br/>
+                    <br/>
+                    <t t-set="transaction" t-value="object.get_portal_last_transaction()"/>
+                    ご注文番号 <span style="font-weight:bold;" t-out="object.name or ''"/>（金額: <span style="font-weight:bold;" t-out="format_amount(object.amount_total, object.currency_id) or ''"/>）
+                    <t t-if="object.state == 'sale' or (transaction and transaction.state in ('done', 'authorized'))">
+                        は確定いたしました。引き続きどうぞよろしくお願いいたします。
+                    </t>
+                    <t t-elif="transaction and transaction.state == 'pending'">
+                        は現在お支払いの確認待ちです。ご入金が確認でき次第、正式に確定いたします。<br/>
+                        <t t-if="object.reference">
+                            お支払い参照番号: <span style="font-weight:bold;" t-out="object.reference or ''"/>
+                        </t>
+                    </t>
+                    <br/><br/>
+                    ご不明点などございましたら、お気軽にお問い合わせください。<br/>
+                    <t t-if="not is_html_empty(object.user_id.signature)">
+                        <br/>
+                        <t t-out="object.user_id.signature or ''"/>
+                    </t>
+                    <br/>
+                </p>
+                <t t-if="hasattr(object, 'website_id') and object.website_id">
+                    <div style="margin: 0px; padding: 0px;">
+                        <table width="100%" style="box-sizing:border-box;caption-side:bottom;color:#454748;font-size:12px;border-collapse:collapse;">
+                            <tbody>
+                                <tr style="border-bottom:2px solid #dee2e6;">
+                                    <td style="width:150px;"><span style="font-weight:bold;">商品</span></td>
+                                    <td></td>
+                                    <td width="15%" align="center"><span style="font-weight:bold;">数量</span></td>
+                                    <td width="20%" align="right"><span style="font-weight:bold;">
+                                        <t t-if="object.user_id.has_group('account.group_show_line_subtotals_tax_excluded')">税抜</t>
+                                        <t t-else="">税込</t>
+                                    </span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <t t-foreach="object.order_line" t-as="line">
+                            <t t-if="(not hasattr(line, 'is_delivery') or not line.is_delivery) and line.display_type in ['line_section', 'line_note']">
+                                <t t-set="loop_cycle_number" t-value="loop_cycle_number or 0"/>
+                                <t t-set="loop_cycle_number" t-value="loop_cycle_number + 1"/>
+                                <table width="100%" style="box-sizing:border-box;caption-side:bottom;color:#454748;font-size:12px;border-collapse:collapse;">
+                                    <tbody>
+                                        <tr t-att-style="'background-color: #f2f2f2' if loop_cycle_number % 2 == 0 else 'background-color: #ffffff'">
+                                            <td colspan="4">
+                                                <t t-if="line.display_type == 'line_section'">
+                                                    <span style="font-weight:bold;" t-out="line.name or ''"/>
+                                                </t>
+                                                <t t-elif="line.display_type == 'line_note'">
+                                                    <i t-out="line.name or ''"/>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </t>
+                            <t t-elif="(not hasattr(line, 'is_delivery') or not line.is_delivery)">
+                                <t t-set="loop_cycle_number" t-value="loop_cycle_number or 0"/>
+                                <t t-set="loop_cycle_number" t-value="loop_cycle_number + 1"/>
+                                <table width="100%" style="box-sizing:border-box;caption-side:bottom;color:#454748;font-size:12px;border-collapse:collapse;">
+                                    <tbody>
+                                        <tr t-att-style="'background-color: #f2f2f2' if loop_cycle_number % 2 == 0 else 'background-color: #ffffff'">
+                                            <td style="width:150px;">
+                                                <img t-attf-src="/web/image/product.product/{{ line.product_id.id }}/image_128" style="width:64px;height:64px;object-fit:contain;" alt="Product image"/>
+                                            </td>
+                                            <td align="left" t-out="line.product_id.name or ''"/>
+                                            <td width="15%" align="center" t-out="line.product_uom_qty or ''"/>
+                                            <td width="20%" align="right">
+                                                <span style="font-weight:bold;">
+                                                    <t t-if="object.user_id.has_group('account.group_show_line_subtotals_tax_excluded')">
+                                                        <t t-out="format_amount(line.price_reduce_taxexcl, object.currency_id) or ''"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <t t-out="format_amount(line.price_reduce_taxinc, object.currency_id) or ''"/>
+                                                    </t>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </t>
+                        </t>
+                    </div>
+                    <div style="margin: 0px; padding: 0px;" t-if="hasattr(object, 'carrier_id') and object.carrier_id">
+                        <table width="100%" style="box-sizing:border-box;border-spacing:0px 4px;color:#454748;font-size:12px;" align="right">
+                            <tbody>
+                                <tr>
+                                    <td style="width:60%"></td>
+                                    <td style="width:30%; border-top:1px solid #dee2e6;" align="right"><span style="font-weight:bold;">配送:</span></td>
+                                    <td style="width:10%; border-top:1px solid #dee2e6;" align="right" t-out="format_amount(object.amount_delivery, object.currency_id) or ''"/>
+                                </tr>
+                                <tr>
+                                    <td style="width:60%"></td>
+                                    <td style="width:30%;" align="right"><span style="font-weight:bold;">小計:</span></td>
+                                    <td style="width:10%;" align="right" t-out="format_amount(object.amount_untaxed, object.currency_id) or ''"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="margin: 0px; padding: 0px;" t-else="">
+                        <table width="100%" style="box-sizing:border-box;border-spacing:0px 4px;color:#454748;font-size:12px;" align="right">
+                            <tbody>
+                                <tr>
+                                    <td style="width:60%"></td>
+                                    <td style="width:30%; border-top:1px solid #dee2e6;" align="right"><span style="font-weight:bold;">小計:</span></td>
+                                    <td style="width:10%; border-top:1px solid #dee2e6;" align="right" t-out="format_amount(object.amount_untaxed, object.currency_id) or ''"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="margin: 0px; padding: 0px;">
+                        <table width="100%" style="box-sizing:border-box;border-spacing:0px 4px;color:#454748;font-size:12px;" align="right">
+                            <tbody>
+                                <tr>
+                                    <td style="width:60%"></td>
+                                    <td style="width:30%;" align="right"><span style="font-weight:bold;">税額:</span></td>
+                                    <td style="width:10%;" align="right" t-out="format_amount(object.amount_tax, object.currency_id) or ''"/>
+                                </tr>
+                                <tr>
+                                    <td style="width:60%"></td>
+                                    <td style="width:30%; border-top:1px solid #dee2e6;" align="right"><span style="font-weight:bold;">合計:</span></td>
+                                    <td style="width:10%; border-top:1px solid #dee2e6;" align="right" t-out="format_amount(object.amount_total, object.currency_id) or ''"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div t-if="object.partner_invoice_id" style="margin: 0px; padding: 0px;">
+                        <table width="100%" style="box-sizing:border-box;border-collapse:collapse;color:#454748;font-size:12px;">
+                            <tbody>
+                                <tr>
+                                    <td style="padding-top:10px;">
+                                        <span style="font-weight:bold;">請求先:</span><br/>
+                                        〒<t t-out="object.partner_invoice_id.zip or ''"/><br/>
+                                        <t t-out="object.partner_invoice_id.state_id.name or ''"/> <t t-out="object.partner_invoice_id.city or ''"/><br/>
+                                        <t t-out="object.partner_invoice_id.street or ''"/><br/>
+                                        <t t-if="object.partner_invoice_id.country_id">
+                                            <t t-out="object.partner_invoice_id.country_id.name or ''"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr t-if="transaction">
+                                    <td>
+                                        <span style="font-weight:bold;">お支払い方法:</span>
+                                        <t t-if="transaction.token_id">
+                                            <t t-out="transaction.token_id.display_name or ''"/>
+                                        </t>
+                                        <t t-else="">
+                                            <t t-out="transaction.provider_id.sudo().name or ''"/>
+                                        </t>
+                                        （<t t-out="format_amount(transaction.amount, object.currency_id) or ''"/>）
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+                <div t-if="object.partner_shipping_id and not object.only_services" style="margin: 0px; padding: 0px;">
+                    <table width="100%" style="box-sizing:border-box;border-collapse:collapse;color:#454748;font-size:12px;">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <br/>
+                                    <span style="font-weight:bold;">配送先:</span><br/>
+                                    〒<t t-out="object.partner_shipping_id.zip or ''"/><br/>
+                                    <t t-out="object.partner_shipping_id.state_id.name or ''"/> <t t-out="object.partner_shipping_id.city or ''"/><br/>
+                                    <t t-out="object.partner_shipping_id.street or ''"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table t-if="hasattr(object, 'carrier_id') and object.carrier_id" width="100%" style="box-sizing:border-box;border-collapse:collapse;color:#454748;font-size:12px;">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span style="font-weight:bold;">配送方法:</span>
+                                    <t t-out="object.carrier_id.name or ''"/>
+                                    <t t-if="object.amount_delivery == 0.0">（無料）</t>
+                                    <t t-else="">（<t t-out="format_amount(object.amount_delivery, object.currency_id) or ''"/>）</t>
+                                </td>
+                            </tr>
+                            <tr t-if="object.carrier_id.carrier_description">
+                                <td>
+                                    <strong>配送説明:</strong>
+                                    <t t-out="object.carrier_id.carrier_description"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </field>
+    </record>
+  </data>
+</odoo>

@@ -55,14 +55,110 @@
                         <img src="/acoona_theme/static/src/img/code_logo.png" class="logo_img"/>
                     </div>
                     <h6 class="sidebar_head">MENU</h6>
+                    <t t-set="material_icon_name_map" t-value="{
+                        'Apps': 'apps',
+                        'アプリ': 'apps',
+                        'Dashboard': 'dashboard',
+                        'ダッシュボード': 'dashboard',
+                        'Settings': 'settings',
+                        '設定': 'settings',
+                        'Sales': 'shopping_cart',
+                        '販売': 'shopping_cart',
+                        'CRM': 'diversity_3',
+                        '顧客管理': 'diversity_3',
+                        'Invoicing': 'account_balance',
+                        '請求': 'account_balance',
+                        '会計': 'account_balance',
+                        'Accounting': 'account_balance',
+                        'Inventory': 'inventory_2',
+                        '在庫': 'inventory_2',
+                        'Purchase': 'shopping_bag',
+                        '購買': 'shopping_bag',
+                        'Manufacturing': 'precision_manufacturing',
+                        '製造': 'precision_manufacturing',
+                        'Project': 'assignment',
+                        'プロジェクト': 'assignment',
+                        'Timesheets': 'schedule',
+                        '工数表': 'schedule',
+                        'Employees': 'badge',
+                        '従業員': 'badge',
+                        'Expenses': 'receipt_long',
+                        '経費': 'receipt_long',
+                        'Time Off': 'beach_access',
+                        '休暇': 'beach_access',
+                        'Attendance': 'how_to_reg',
+                        '勤怠': 'how_to_reg',
+                        'Recruitment': 'work',
+                        '採用': 'work',
+                        'Approvals': 'task_alt',
+                        '承認': 'task_alt',
+                        'Helpdesk': 'support_agent',
+                        'ヘルプデスク': 'support_agent',
+                        'Maintenance': 'build_circle',
+                        '保守': 'build_circle',
+                        'Quality': 'fact_check',
+                        '品質': 'fact_check',
+                        'Repairs': 'handyman',
+                        '修理': 'handyman',
+                        'Point of Sale': 'sell',
+                        'POS': 'sell',
+                        'Website': 'public',
+                        'サイト': 'public',
+                        'eCommerce': 'storefront',
+                        '注文': 'assignment',
+                        'イベント': 'event',
+                        'Event': 'event',
+                        'Marketing Automation': 'insights',
+                        'マーケティングオートメーション': 'insights',
+                        'Email Marketing': 'mail',
+                        'SMS Marketing': 'sms',
+                        'Social Marketing': 'share',
+                        'Live Chat': 'forum',
+                        'リンクトラッカー': 'travel_explore',
+                        'Link Tracker': 'travel_explore',
+                        'サブスクリプション': 'autorenew',
+                        'Subscriptions': 'autorenew',
+                        'レンタル': 'car_rental',
+                        'Calendar': 'calendar_month',
+                        'カレンダー': 'calendar_month',
+                        'Contacts': 'contact_page',
+                        '連絡先': 'contact_page',
+                        'Discuss': 'chat',
+                        'ディスカス': 'chat',
+                        'ダイレクトメッセージ': 'chat',
+                        'チャット': 'chat',
+                        'Notes': 'sticky_note_2',
+                        'メモ': 'sticky_note_2',
+                        'Sign': 'edit_square',
+                        '署名': 'edit_square',
+                        '会員管理': 'groups',
+                        'Rental': 'car_rental',
+                        'Field Service': 'handyman',
+                        'フィールドサービス': 'handyman',
+                        'Planning': 'calendar_view_week',
+                        'Budget': 'account_balance_wallet',
+                        '資産': 'account_balance_wallet',
+                        'Assets': 'account_balance_wallet',
+                        '製品ライフサイクル管理': 'precision_manufacturing',
+                        'PLM': 'precision_manufacturing',
+                        'スタジオ': 'app_registration',
+                        'Studio': 'app_registration',
+                        'アプリケーション': 'apps',
+                        'コミュニティ': 'diversity_3',
+                        'マーケットプレイス': 'storefront',
+                        'Acoona Invoice': 'receipt_long',
+                        'Acoona Theme': 'brush'
+                    }"/>
                     <ul class="sidebar_menu">
                         <t t-foreach="menuService.getApps()" t-as="app" t-key="app_index">
+                            <t t-set="icon_name" t-value="app.acoona_material_icon || material_icon_name_map[app.name] || 'apps'"/>
                             <li data-toggle="tooltip" data-placement="right" t-att-title="app.name">
                                 <a role="menuitem"
                                    t-attf-href="#menu_id={{app.id}}"
                                    class="nav-link">
-                                    <img class="sidebar_img"
-                                         t-attf-src="data:image/png;base64,{{app.webIconData}}"/>
+                                    <span class="sidebar_icon material-symbols-outlined">
+                                        <t t-esc="icon_name"/>
+                                    </span>
                                     <span class="sidebar_app_name">
                                         <t t-esc="app.name"/>
                                     </span>

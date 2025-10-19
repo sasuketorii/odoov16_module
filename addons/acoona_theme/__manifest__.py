@@ -32,6 +32,8 @@
     'website': "https://company.rev-c.com",
     "depends": ['base', 'web', 'mail'],
     "data": [
+        'data/menu_material_icons.xml',
+        'views/head_branding.xml',
         'views/layout.xml',
         'views/icons.xml',
         'views/login.xml',
@@ -44,12 +46,15 @@
             'acoona_theme/static/src/scss/navigation_bar.scss',
             'acoona_theme/static/src/scss/datetimepicker.scss',
             'acoona_theme/static/src/scss/theme.scss',
-            'acoona_theme/static/src/scss/sidebar.scss',
-            'acoona_theme/static/src/js/chrome/sidebar_menu.js',
+        'acoona_theme/static/src/scss/sidebar.scss',
+        'acoona_theme/static/src/js/dialog_title_patch.js',
+        'acoona_theme/static/src/js/chrome/sidebar_menu.js',
             'acoona_theme/static/src/js/fields/colors.js',
+            'acoona_theme/static/src/js/webclient_branding.js',
         ],
         'web.assets_frontend': [
             'acoona_theme/static/src/scss/login.scss',
+            'acoona_theme/static/src/js/frontend_branding.js',
         ],
     },
     'images': [

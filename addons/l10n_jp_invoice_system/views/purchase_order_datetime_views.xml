@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_purchase_order_form_l10n_jp_datetime" model="ir.ui.view">
+        <field name="name">purchase.order.form.l10n.jp.datetime</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_order']" position="attributes">
+                <attribute name="options">{'format': 'YYYY-MM-DD HH:mm', 'datetimepicker': {'format': 'YYYY-MM-DD HH:mm', 'useSeconds': false}}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='date_planned']" position="attributes">
+                <attribute name="options">{'format': 'YYYY-MM-DD HH:mm', 'datetimepicker': {'format': 'YYYY-MM-DD HH:mm', 'useSeconds': false}}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

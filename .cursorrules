@@ -1,0 +1,87 @@
+# Cursor Rulebook — Odoo16 JP Localization
+
+このリポジトリで Cursor を使用する際の行動規範を定義します。エージェントは以下の方針を既定として作業してください。
+
+---
+
+## 1. ゴールと優先順位
+- **第一優先**: Odoo 16 の日本向けモジュール開発（`addons/` 配下）。コア改変は禁止。
+- **第二優先**: 既存モジュールを `_inherit` で拡張し、重複実装を避ける。
+- **第三優先**: 日本の法規制・商習慣（インボイス、銀行口座、住所、和暦など）に準拠した仕様を満たす。
+
+---
+
+## 2. ワークフロー
+1. **タスク把握**: 対象モジュールの README / `docs/` 要件書 / `AGENTS.md` を参照する。
+2. **調査**: `rg`, `git grep`, Odoo shell で関連コード・データを検索。
+3. **設計**: 変更点を箇条書きでまとめ、影響範囲を明確にする。
+4. **実装**: 各モジュールのディレクトリ構成に沿ってファイルを追加・編集。
+5. **検証**: `docker compose exec odoo odoo -c /etc/odoo/odoo.conf -u/-i <module>` および `--test-enable` でテスト。
+6. **レビュー準備**: 変更理由・手順・テスト結果をドキュメント化し、不要ファイルが残っていないか確認。
+
+`update_plan` ツールを活用し、複数工程がある作業では常に 1 項目のみ `in_progress` とすること。
+
+---
+
+## 3. コーディング規約（概要）
+
+### Python
+- 4 スペース、`.editorconfig` に準拠。
+- `api.depends`, `api.constrains`, `api.model` を適切に使用。
+- ログは `_logger`、例外は `ValidationError` / `UserError` を活用。
+- 日本語文字列は `_()` で翻訳、もしくは `i18n/ja.po` に追加。
+
+### XML/QWeb
+- ビュー継承では `xpath` を最小限にし、`priority` や `sequence` を明示。
+- QWeb テンプレートは `format_*` 系ユーティリティで日付/金額を整形。
+- 外部レイアウトやレポートは `report.layout` や `ir.ui.view` の参照を間違えない。
+
+### JS/SCSS
+- JS は OWL/サービスパッチのルールに従い、グローバル汚染を避ける。
+- SCSS はトークンベースで整理し、`static/src/scss/` に配置。
+- アセットを追加したら `__manifest__.py` の `assets` を更新。
+
+### データ/翻訳
+- CSV/XML データは `noupdate` フラグを適切に設定。
+- 翻訳は `i18n/ja.po` に集約し、必要に応じてエクスポート/インポートする。
+
+詳細規約は `AGENTS.md` を参照。
+
+---
+
+## 4. コミット & ドキュメント
+- コミットメッセージ形式: `[module_name] Imperative summary`。
+- PR には目的・変更点・影響範囲・テスト結果を記載し、UI 改修時はスクリーンショットを添付。
+- モジュール README、要件書 (`docs/`)、翻訳ファイルに影響がある場合は必ず更新。
+
+---
+
+## 5. コマンド使用ルール
+- Docker 経由の操作が前提。例:
+  ```bash
+  docker compose up -d
+  docker compose logs -f odoo
+  docker compose exec odoo odoo -c /etc/odoo/odoo.conf -u <module> --stop-after-init
+  docker compose exec odoo odoo -c /etc/odoo/odoo.conf -i <module> --test-enable --stop-after-init
+  ```
+- `rg`, `git status`, `odoo shell` など安全な調査コマンドを優先。
+- シェル実行前に日本語で狙いを述べる（Codex CLI 運用ポリシー）。
+
+---
+
+## 6. 注意事項
+- 機密情報・資格情報はコミット禁止（環境変数で注入）。
+- モジュール間の過度な依存は避け、責務を明確化する。
+- 不明点や追加仕様は `docs/` にまとめ、ガイドラインを継続的に改善する。
+- 大規模変更時は必ずバックアップ手順とロールバック案を提示。
+
+---
+
+## 7. 参照リソース
+- `AGENTS.md`（総合ガイド）
+- `docs/odoo16_development_documentation.md`（公式リンク集）
+- Odoo 16 Developer Docs / ORM / QWeb / Security / Testing
+
+---
+
+Cursor で編集する際は本ルールを初期プロンプトで読み込み、逸脱する変更はレビュー前に再確認してください。

@@ -6,5 +6,18 @@
         <menuitem id="base.menu_management" name="Apps" web_icon="acoona_theme,static/src/img/icons/apps.png"/>
         <menuitem id="mail.menu_root_discuss" name="Discuss"
                   web_icon="acoona_theme,static/src/img/icons/discuss.png"/>
+
+        <record id="view_menu_form_acoona_material_icon" model="ir.ui.view">
+            <field name="name">ir.ui.menu.form.acoona.material.icon</field>
+            <field name="model">ir.ui.menu</field>
+            <field name="inherit_id" ref="base.view_menu_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group" position="inside">
+                    <group string="Acoona Theme" colspan="2">
+                        <field name="acoona_material_icon" placeholder="material icon name e.g. dashboard"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
     </data>
 </odoo>

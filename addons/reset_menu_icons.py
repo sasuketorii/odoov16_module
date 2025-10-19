@@ -15,7 +15,7 @@
 
 import argparse
 import logging
-import os
+import os 
 import sys
 
 import odoo

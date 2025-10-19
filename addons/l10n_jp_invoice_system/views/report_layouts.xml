@@ -11,6 +11,20 @@
     -->
     <!-- Japan をレイアウト選択肢に追加 -->
     <template id="external_layout_jp" name="Japan" inherit_id="web.external_layout_standard">
+        <!-- ヘッダー行を非表示（日本版では不要） -->
+        <xpath expr="//div[@t-attf-class='header o_company_#{company.id}_layout']" position="attributes">
+            <attribute name="t-att-style">'display: none;'</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@t-attf-class, 'article o_report_layout_standard')]" position="attributes">
+            <attribute name="t-attf-class">article o_report_layout_standard o_company_#{company.id}_layout {{  'o_report_layout_background' if company.layout_background in ['Geometric', 'Custom']  else  '' }} jp-report-article</attribute>
+        </xpath>
+        <xpath expr="//div[contains(@t-attf-class, 'footer')]/div[@class='text-center']" position="attributes">
+            <attribute name="style">border-top: none;</attribute>
+        </xpath>
+        <!-- 本文の余白を詰める -->
+        <xpath expr="//div[hasclass('pt-5')]" position="attributes">
+            <attribute name="class">pt-0</attribute>
+        </xpath>
         <!-- 会社住所ブロック内に登録番号を追加表示 -->
         <xpath expr="//div[@name='company_address']/ul" position="inside">
             <t t-set="company_jp" t-value="company and (company.company_id if company._name == 'base.document.layout' else company)"/>

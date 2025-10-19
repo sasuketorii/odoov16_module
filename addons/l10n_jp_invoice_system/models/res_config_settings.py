@@ -17,22 +17,51 @@ class ResConfigSettings(models.TransientModel):
         readonly=False,
     )
 
-    company_l10n_jp_default_invoice_bank_id = fields.Many2one(
-        related="company_id.l10n_jp_default_invoice_bank_id",
-        comodel_name="res.partner.bank",
-        string="Default Invoice Remit-to Bank (JP)",
-        readonly=False,
-        domain="[('partner_id', '=', company_partner_id)]",
-    )
-    company_l10n_jp_show_bank_block = fields.Boolean(
-        related="company_id.l10n_jp_show_bank_block",
-        string="Show Bank Block on Invoices (JP)",
-        readonly=False,
-    )
-
     # res.config.settings のビュー内でドメインに使用するための補助フィールド
     company_partner_id = fields.Many2one(
         related="company_id.partner_id",
         string="Company Partner",
         readonly=True,
+    )
+
+    # Acoona Invoice の機能を統合
+    company_acoona_invoice_use_jp_layout = fields.Boolean(
+        related="company_id.acoona_invoice_use_jp_layout",
+        string="日本向け請求書レイアウトを使用",
+        readonly=False,
+    )
+    company_acoona_invoice_department = fields.Char(
+        related="company_id.acoona_invoice_department",
+        string="請求部署名",
+        readonly=False,
+    )
+    company_acoona_invoice_responsible_title = fields.Char(
+        related="company_id.acoona_invoice_responsible_title",
+        string="担当者肩書",
+        readonly=False,
+    )
+    company_acoona_invoice_responsible_name = fields.Char(
+        related="company_id.acoona_invoice_responsible_name",
+        string="担当者氏名",
+        readonly=False,
+    )
+    company_acoona_invoice_payment_note = fields.Text(
+        related="company_id.acoona_invoice_payment_note",
+        string="支払案内メッセージ",
+        readonly=False,
+    )
+    company_acoona_invoice_footer_note = fields.Text(
+        related="company_id.acoona_invoice_footer_note",
+        string="請求書備考デフォルト",
+        readonly=False,
+    )
+    company_l10n_jp_invoice_opening_text = fields.Char(
+        related="company_id.l10n_jp_invoice_opening_text",
+        string="請求書リード文 (JP)",
+        readonly=False,
+    )
+    company_l10n_jp_invoice_bank_note = fields.Char(
+        related="company_id.l10n_jp_invoice_bank_note",
+        string="振込手数料注記 (JP)",
+        readonly=False,
     )

@@ -19,4 +19,5 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 #############################################################################
+from . import models
 from .hooks import acoona_pre_init_hook, acoona_post_init_hook, acoona_uninstall_hook

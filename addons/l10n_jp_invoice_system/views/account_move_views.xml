@@ -6,11 +6,42 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form"/>
         <field name="arch" type="xml">
-            <!-- 汎用性を優先し、支払条件フィールドがあるグループに追加 -->
-            <xpath expr="//group[.//field[@name='invoice_payment_term_id']]" position="inside">
-                <!-- domain参照フィールドはビュー上に配置が必要 -->
-                <field name="company_partner_id" invisible="1"/>
-                <field name="l10n_jp_invoice_bank_id" options="{'no_create_edit': False}" domain="[('partner_id', '=', company_partner_id)]"/>
+            <!-- 顧客列に振込先口座を配置 -->
+            <xpath expr="//group[@id='header_left_group']" position="attributes">
+                <attribute name="class" add="o_l10n_jp_invoice_header_left o_l10n_jp_header_left"/>
+            </xpath>
+            <xpath expr="//group[@id='header_right_group']" position="attributes">
+                <attribute name="class" add="o_l10n_jp_invoice_header_right o_l10n_jp_header_right"/>
+            </xpath>
+            <xpath expr="//group[@id='header_left_group']/field[@name='partner_id']" position="after">
+                <field name="company_partner_id" invisible="1" nolabel="1"/>
+                <label for="l10n_jp_invoice_bank_id" string="振込先口座" attrs="{'invisible': [('move_type','not in', ['out_invoice','out_refund','in_invoice','in_refund'])]}"/>
+                <field name="l10n_jp_invoice_bank_id"
+                       nolabel="1"
+                       class="o_w-100"
+                       options="{'no_create_edit': False}"
+                       domain="[('partner_id', '=', company_partner_id)]"
+                       placeholder="例：ゆうちょ銀行（0298427）"
+                       attrs="{'invisible': [('move_type','not in', ['out_invoice','out_refund','in_invoice','in_refund'])]}"/>
+            </xpath>
+            <!-- 右列に取引年月日を配置 -->
+            <xpath expr="//group[@id='header_right_group']/field[@name='currency_id']" position="after">
+                <label for="l10n_jp_transaction_date" string="取引年月日" attrs="{'invisible': [('move_type','not in', ['out_invoice','out_refund','in_invoice','in_refund'])]}"/>
+                <field name="l10n_jp_transaction_date"
+                       widget="date"
+                       nolabel="1"
+                       placeholder="例：2025-10-31"
+                       attrs="{'invisible': [('move_type','not in', ['out_invoice','out_refund','in_invoice','in_refund'])]}"/>
+            </xpath>
+            <!-- 支払期日行の見栄えを統一 -->
+            <xpath expr="//group[@id='header_right_group']//div[contains(@class, 'd-flex') and .//field[@name='invoice_payment_term_id']]" position="attributes">
+                <attribute name="class">d-flex align-items-center o_l10n_jp_invoice_due_row</attribute>
+            </xpath>
+            <xpath expr="//group[@id='header_right_group']//field[@name='invoice_date_due']" position="attributes">
+                <attribute name="placeholder">例：2025-10-31</attribute>
+            </xpath>
+            <xpath expr="//group[@id='header_right_group']//field[@name='invoice_payment_term_id']" position="attributes">
+                <attribute name="placeholder">例：翌月末払い</attribute>
             </xpath>
         </field>
     </record>

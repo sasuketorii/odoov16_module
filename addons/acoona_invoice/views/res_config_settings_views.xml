@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_res_config_settings_acoona_invoice" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.acoona.invoice</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="priority" eval="100"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='invoicing_settings']" position="after">
+                <div class="app_settings_block" data-string="日本向け請求書">
+                    <h2>日本向け請求書レイアウト</h2>
+                    <div class="row mt16">
+                        <div class="col-12 col-lg-6">
+                            <div class="o_setting_box">
+                                <div class="o_setting_left">
+                                    <field name="acoona_invoice_use_jp_layout"/>
+                                </div>
+                                <div class="o_setting_right">
+                                    <label for="acoona_invoice_use_jp_layout" string="日本版レイアウトを有効化"/>
+                                    <div class="text-muted">
+                                        チェックすると請求書PDFにAcoonaの日本向けレイアウトを適用します。
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="o_setting_box">
+                                <div class="o_setting_left">
+                                    <label for="acoona_invoice_department"/>
+                                </div>
+                                <div class="o_setting_right">
+                                    <div class="o_field_widget">
+                                        <field name="acoona_invoice_department" placeholder="営業部 第一課"/>
+                                    </div>
+                                    <div class="text-muted">請求書に表示する部署・部門名（任意）。</div>
+                                </div>
+                            </div>
+                            <div class="o_setting_box">
+                                <div class="o_setting_left">
+                                    <label for="acoona_invoice_responsible_title"/>
+                                </div>
+                                <div class="o_setting_right">
+                                    <div class="o_field_widget">
+                                        <field name="acoona_invoice_responsible_title" placeholder="担当"/>
+                                    </div>
+                                    <div class="text-muted">担当者名の前に表示する肩書を指定します。</div>
+                                </div>
+                            </div>
+                            <div class="o_setting_box">
+                                <div class="o_setting_left">
+                                    <label for="acoona_invoice_responsible_name"/>
+                                </div>
+                                <div class="o_setting_right">
+                                    <div class="o_field_widget">
+                                        <field name="acoona_invoice_responsible_name" placeholder="山田 太郎"/>
+                                    </div>
+                                    <div class="text-muted">請求書に表示する担当者名。</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="o_setting_box">
+                                <div class="o_setting_left">
+                                    <label for="acoona_invoice_payment_note"/>
+                                </div>
+                                <div class="o_setting_right">
+                                    <div class="o_field_widget">
+                                        <field name="acoona_invoice_payment_note" placeholder="お支払期日までに下記口座へお振込みください。"/>
+                                    </div>
+                                    <div class="text-muted">請求書ヘッダー直下に表示する支払案内メッセージ。</div>
+                                </div>
+                            </div>
+                            <div class="o_setting_box">
+                                <div class="o_setting_left">
+                                    <label for="acoona_invoice_footer_note"/>
+                                </div>
+                                <div class="o_setting_right">
+                                    <div class="o_field_widget">
+                                        <field name="acoona_invoice_footer_note" placeholder="お問い合わせは担当までご連絡ください。"/>
+                                    </div>
+                                    <div class="text-muted">PDFの備考欄に常に表示する定型文。</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

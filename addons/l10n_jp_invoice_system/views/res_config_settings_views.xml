@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <!-- 既存で確実に存在する #about セクションにボックスを追加 -->
             <xpath expr="//div[@id='about']/div[hasclass('row','mt16','o_settings_container')]" position="inside">
-                <div class="col-12 col-lg-6 o_setting_box" id="l10n_jp_invoice_system_box">
+                <div class="col-12 o_setting_box" id="l10n_jp_invoice_system_box">
                     <div class="o_setting_left_pane">
                         <i class="fa fa-file-text-o" role="img" aria-label="Japan Invoice" title="Japan Invoice"/>
                     </div>
@@ -18,24 +18,40 @@
                         <span class="o_form_label">Japan Invoice Settings</span>
                         <div class="text-muted">日本のインボイス制度向けの追加項目</div>
                         <div class="content-group mt16">
-                            <div class="mt8">
-                                <label for="company_l10n_jp_registration_number" class="o_light_label"/>
-                                <field name="company_l10n_jp_registration_number" placeholder="T1234567890123" class="oe_inline"/>
+                            <div class="mb-4">
+                                <label for="company_l10n_jp_registration_number" class="o_light_label d-block mb-1"/>
+                                <field name="company_l10n_jp_registration_number" placeholder="T1234567890123" class="oe_inline w-100"/>
                             </div>
-                            <div class="mt8">
-                                <label for="company_l10n_jp_company_seal" class="o_light_label"/>
-                                <field name="company_l10n_jp_company_seal" widget="image" options="{'size':[0,100]}"/>
+                            <div class="mb-4">
+                                <label for="company_l10n_jp_company_seal" class="o_light_label d-block mb-1"/>
+                                <div class="w-100 o_field_image_wrapper">
+                                    <field name="company_l10n_jp_company_seal" widget="image" options="{'size':[0,100]}" class="w-100"/>
+                                </div>
                             </div>
-                            <div class="mt8">
-                                <label for="company_l10n_jp_show_bank_block" class="o_light_label"/>
-                                <field name="company_l10n_jp_show_bank_block" class="oe_inline"/>
-                                <div class="text-muted">請求書に振込先（お振込先）を表示します。</div>
+                            <div class="mb-4">
+                                <label for="company_acoona_invoice_use_jp_layout" class="o_light_label d-block mb-1"/>
+                                <field name="company_acoona_invoice_use_jp_layout" class="oe_inline"/>
+                                <div class="text-muted mt-1">Acoonaの日本向け請求書レイアウトを有効にします。</div>
                             </div>
-                            <div class="mt8" attrs="{'invisible': [('company_l10n_jp_show_bank_block','=',False)]}">
-                                <label for="company_l10n_jp_default_invoice_bank_id" class="o_light_label"/>
-                                <!-- View側のdomainは外し、フィールド定義側のdomainを利用 -->
-                                <field name="company_l10n_jp_default_invoice_bank_id" options="{'no_create_edit': False}" class="oe_inline"/>
-                                <div class="text-muted">会社の銀行口座から選択。請求書側で個別に上書きできます。</div>
+                            <div class="mb-4">
+                                <label for="company_acoona_invoice_payment_note" class="o_light_label d-block mb-1"/>
+                                <field name="company_acoona_invoice_payment_note" placeholder="お支払期日までに下記口座へお振込みください。" class="oe_inline w-100"/>
+                                <div class="text-muted mt-1">請求書ヘッダー直下に表示する支払案内メッセージ。</div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="company_l10n_jp_invoice_opening_text" class="o_light_label d-block mb-1"/>
+                                <field name="company_l10n_jp_invoice_opening_text" placeholder="下記の通り、ご請求申し上げます。" class="oe_inline w-100" widget="text" options="{'no_label': True}"/>
+                                <div class="text-muted mt-1">請求書本文冒頭に表示するリード文を設定します。</div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="company_acoona_invoice_footer_note" class="o_light_label d-block mb-1"/>
+                                <field name="company_acoona_invoice_footer_note" placeholder="お問い合わせは担当までご連絡ください。" class="oe_inline w-100"/>
+                                <div class="text-muted mt-1">PDFの備考欄に常に表示する定型文。</div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="company_l10n_jp_invoice_bank_note" class="o_light_label d-block mb-1"/>
+                                <field name="company_l10n_jp_invoice_bank_note" placeholder="振込手数料は貴社でご負担ください。" class="oe_inline w-100" widget="text" options="{'no_label': True}"/>
+                                <div class="text-muted mt-1">振込先ブロックの下部に挿入する注意書き。</div>
                             </div>
                         </div>
                     </div>

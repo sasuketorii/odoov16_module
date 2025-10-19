@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Acoona Bot名前変更',
-    'version': '16.0.1.0.0',
+    'version': '16.0.1.0.1',
     'category': 'Discuss',
     'summary': 'OdooBotをAcoona Botに名前変更',
     'description': """
@@ -14,7 +14,9 @@ OdooBotの名前変更
     'maintainer': 'REV-C inc.',
     'website': 'https://company.rev-c.com',
     'depends': ['mail'],
-    'data': [],
+    'data': [
+        'data/rename_odoobot.xml',
+    ],
     'installable': True,
     'application': False,
     'auto_install': False,

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <function model="ir.ui.menu" name="_acoona_apply_default_icons"/>
+    </data>
+</odoo>

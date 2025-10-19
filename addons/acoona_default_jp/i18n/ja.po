@@ -14,6 +14,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#. module: mail
+#: model_terms:ir.ui.view,arch_db:mail.mail_compose_message_form
+msgid "Followers of the document and"
+msgstr "このドキュメントのフォロワーと追加宛先"
+
 #. module: acoona_default_jp
 #: model:ir.model.fields,field_description:acoona_default_jp.field_res_config_settings__default_lang
 msgid "デフォルト言語"

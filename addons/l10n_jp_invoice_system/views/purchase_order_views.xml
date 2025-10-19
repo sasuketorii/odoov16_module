@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_purchase_order_form_l10n_jp_header_layout" model="ir.ui.view">
+        <field name="name">purchase.order.form.l10n.jp.header.layout</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='oe_title']/h1" position="attributes">
+                <attribute name="class" add=" o_l10n_jp_title_fullwidth"/>
+            </xpath>
+            <xpath expr="//div[@class='oe_title']/h1/field[@name='name']" position="attributes">
+                <attribute name="class" add=" flex-grow-1 o_w-100"/>
+            </xpath>
+            <xpath expr="//group[field[@name='partner_id'] and field[@name='partner_ref']]" position="attributes">
+                <attribute name="class" add=" o_l10n_jp_header_left"/>
+            </xpath>
+            <xpath expr="//group[field[@name='date_order'] and .//div[@name='date_planned_div']]" position="attributes">
+                <attribute name="class" add=" o_l10n_jp_header_right"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
