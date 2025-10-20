@@ -96,7 +96,7 @@
                             </div>
                         </div>
                         <div class="jp-invoice__payment-row" t-if="bank_info.get('note')">
-                            <div class="jp-invoice__payment-label">備考</div>
+                            <div class="jp-invoice__payment-label"></div>
                             <div class="jp-invoice__payment-body">
                                 <span t-esc="bank_info['note']"/>
                             </div>

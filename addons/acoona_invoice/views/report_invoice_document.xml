@@ -118,6 +118,40 @@
             </div>
         </xpath>
 
+        <xpath expr="//div[@id='total']" position="before">
+            <t t-if="o.company_id.acoona_invoice_use_jp_layout">
+                <t t-set="tax_summary" t-value="o._get_jp_tax_summary()"/>
+                <t t-if="tax_summary">
+                    <div class="row mt-3">
+                        <div class="col-12 col-md-6">
+                            <table class="table table-bordered table-sm jp-invoice__tax-summary">
+                                <thead>
+                                    <tr>
+                                        <th>税率区分</th>
+                                        <th class="text-end">消費税</th>
+                                        <th class="text-end">金額（税抜）</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="tax_summary" t-as="summary">
+                                        <tr>
+                                            <td t-esc="summary['name']"/>
+                                            <td class="text-end">
+                                                <span t-esc="summary['tax']" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                            </td>
+                                            <td class="text-end">
+                                                <span t-esc="summary['base']" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </xpath>
+
         <xpath expr="//div[@id='total']" position="after">
             <t t-if="o.company_id.acoona_invoice_use_jp_layout and (o.narration or o.company_id.acoona_invoice_footer_note)">
                 <div class="row mt-3">

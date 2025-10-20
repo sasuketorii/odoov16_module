@@ -9,7 +9,7 @@
               <div class="top_heading">
                 <!-- Apps Menu -->
                   <t t-call="web.NavBar.AppsMenu">
-                 <t t-set="apps" t-value="menuService.getApps()"/>
+                 <t t-set="apps" t-value="menuService.getApps().filter(app => app.xmlid !== 'mail.menu_root_discuss')"/>
                 </t>
                   <!-- App Brand -->
                   <DropdownItem
@@ -150,7 +150,7 @@
                         'Acoona Theme': 'brush'
                     }"/>
                     <ul class="sidebar_menu">
-                        <t t-foreach="menuService.getApps()" t-as="app" t-key="app_index">
+                        <t t-foreach="menuService.getApps().filter(app => app.xmlid !== 'mail.menu_root_discuss')" t-as="app" t-key="app_index">
                             <t t-set="icon_name" t-value="app.acoona_material_icon || material_icon_name_map[app.name] || 'apps'"/>
                             <li data-toggle="tooltip" data-placement="right" t-att-title="app.name">
                                 <a role="menuitem"
