@@ -2,14 +2,14 @@
 
 ## 概要
 
-`acoona_invoice` モジュールを `l10n_jp_invoice_system` に統合する作業を実施中。日本向け請求書レイアウトの機能を単一モジュールに集約し、依存関係の複雑さを排除することを目的とする。
+`acoona_invoice` モジュールを `acoona_l10n_jp_invoice_system` に統合する作業を実施中。日本向け請求書レイアウトの機能を単一モジュールに集約し、依存関係の複雑さを排除することを目的とする。
 
 ## 統合作業の進捗
 
 ### ✅ 完了した作業
 
 1. **モジュール構造の統合**
-   - `acoona_invoice` の機能を `l10n_jp_invoice_system` に統合
+   - `acoona_invoice` の機能を `acoona_l10n_jp_invoice_system` に統合
    - 依存関係の整理と単一モジュール化
 
 2. **モデル拡張の統合**
@@ -66,7 +66,7 @@ Node: <t t-if="company.external_report_layout_id" t-call="{{company.external_rep
 ### 即座に試すべき解決策
 
 1. **モジュール更新**
-   - `docker compose exec odoo odoo -c /etc/odoo/odoo.conf -u l10n_jp_invoice_system --stop-after-init`
+   - `docker compose exec odoo odoo -c /etc/odoo/odoo.conf -u acoona_l10n_jp_invoice_system --stop-after-init`
    - 新コードがビュー ID 書き込みと自動修復を提供
 2. **既存データの補正**
    - `env['res.company']._acoona_invoice_fix_external_layout_pointer()` を実行し、誤った ID を対応するビュー ID に置換
@@ -89,7 +89,7 @@ Node: <t t-if="company.external_report_layout_id" t-call="{{company.external_rep
 ## 次のアクション
 
 ### 優先度 1: 緊急対応
-1. `l10n_jp_invoice_system` モジュールを更新して新コードを反映
+1. `acoona_l10n_jp_invoice_system` モジュールを更新して新コードを反映
 2. `_acoona_invoice_fix_external_layout_pointer()` を実行し既存データを一括修復
 3. 請求書プレビュー／メール送信でエラーが消えていることを現場で確認
 
@@ -106,10 +106,10 @@ Node: <t t-if="company.external_report_layout_id" t-call="{{company.external_rep
 ## 参考情報
 
 ### 関連ファイル
-- `/addons/l10n_jp_invoice_system/models/res_company.py`
-- `/addons/l10n_jp_invoice_system/models/base_document_layout.py`
-- `/addons/l10n_jp_invoice_system/views/report_invoice_document_acoona.xml`
-- `/addons/l10n_jp_invoice_system/hooks.py`
+- `/addons/acoona_l10n_jp_invoice_system/models/res_company.py`
+- `/addons/acoona_l10n_jp_invoice_system/models/base_document_layout.py`
+- `/addons/acoona_l10n_jp_invoice_system/views/report_invoice_document_acoona.xml`
+- `/addons/acoona_l10n_jp_invoice_system/hooks.py`
 
 ### エラーログの場所
 - Odoo サーバーログ: `docker compose logs odoo`

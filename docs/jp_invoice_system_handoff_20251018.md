@@ -1,4 +1,4 @@
-# l10n_jp_invoice_system 引き継ぎメモ（2025-10-18）
+# acoona_l10n_jp_invoice_system 引き継ぎメモ（2025-10-18）
 
 ## 対応概要
 - フォームレイアウトの統一  
@@ -16,7 +16,7 @@
 
 ## 作業履歴（主要コマンド）
 - モジュール再読込  
-  - `docker compose exec odoo odoo -c /etc/odoo/odoo.conf -d odoo_v16 -u l10n_jp_invoice_system --stop-after-init`
+  - `docker compose exec odoo odoo -c /etc/odoo/odoo.conf -d odoo_v16 -u acoona_l10n_jp_invoice_system --stop-after-init`
 - 既存日時の補正  
   - `docker compose exec -e PGPASSWORD=odoo odoo psql -h db -U odoo -d odoo_v16 -c "UPDATE purchase_order SET date_order = date_trunc('minute', date_order), date_planned = date_trunc('minute', date_planned);"`
   - `docker compose exec -e PGPASSWORD=odoo odoo psql -h db -U odoo -d odoo_v16 -c "UPDATE sale_order SET date_order = date_trunc('minute', date_order);"`
@@ -32,12 +32,12 @@
 - レポート等で独自フォーマットが必要な箇所があれば、`format_datetime` を用いたテンプレート拡張を追加で検討する。
 
 ## 参考ファイル
-- `addons/l10n_jp_invoice_system/views/account_move_views.xml`  
-- `addons/l10n_jp_invoice_system/views/purchase_order_views.xml`  
-- `addons/l10n_jp_invoice_system/views/sale_order_views.xml`  
-- `addons/l10n_jp_invoice_system/views/purchase_order_datetime_views.xml`  
-- `addons/l10n_jp_invoice_system/views/report_purchaseorder_document_jp.xml`  
-- `addons/l10n_jp_invoice_system/models/sale_order.py`  
-- `addons/l10n_jp_invoice_system/models/purchase_order.py`  
-- `addons/l10n_jp_invoice_system/static/src/scss/account_move_form.scss`
+- `addons/acoona_l10n_jp_invoice_system/views/account_move_views.xml`  
+- `addons/acoona_l10n_jp_invoice_system/views/purchase_order_views.xml`  
+- `addons/acoona_l10n_jp_invoice_system/views/sale_order_views.xml`  
+- `addons/acoona_l10n_jp_invoice_system/views/purchase_order_datetime_views.xml`  
+- `addons/acoona_l10n_jp_invoice_system/views/report_purchaseorder_document_jp.xml`  
+- `addons/acoona_l10n_jp_invoice_system/models/sale_order.py`  
+- `addons/acoona_l10n_jp_invoice_system/models/purchase_order.py`  
+- `addons/acoona_l10n_jp_invoice_system/static/src/scss/account_move_form.scss`
 

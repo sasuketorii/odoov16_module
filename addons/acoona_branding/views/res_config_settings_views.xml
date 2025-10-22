@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_general_configuration_acoona_branding" model="ir.ui.view">
+        <field name="name">res.config.settings.acoona.branding.2</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="priority" eval="3000"/>
+        <field name="arch" type="xml">
+            <!-- 1) About 見出しの差し替え + 会社サイトへのリンク追加 -->
+            <xpath expr="//div[@id='about']/h2" position="replace">
+                <h2>Acoonaについて</h2>
+            </xpath>
+            <xpath expr="//div[@id='about']/div[hasclass('row','mt16','o_settings_container')][@name='about_setting_container']" position="inside">
+                <div class="col-12 col-lg-6 o_setting_box" id="acoona_about_link_box_v2">
+                    <div class="o_setting_right_pane">
+                        <span class="o_form_label">Acoona 公式サイト</span>
+                        <div class="text-muted">会社情報・サポートはこちらをご参照ください。</div>
+                        <div class="mt8">
+                            <a class="oe_link" target="_blank" href="https://company.rev-c.com">https://company.rev-c.com</a>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+
+            <!-- 2) 開発者ツールウィジェット: トグルOFFで表示（管理者のみ）/ ONで非表示 -->
+            <xpath expr="//widget[@name='res_config_dev_tool']" position="replace">
+                <div attrs="{'invisible': [('acoona_hide_devtools_2', '=', True)]}" groups="base.group_system" id="acoona_devtools_toggle_wrapper_v2">
+                    <widget name="res_config_dev_tool"/>
+                </div>
+            </xpath>
+
+            <!-- 3) Acoona 設定ブロックにトグルを追加（デフォルトON=非表示） -->
+            <xpath expr="//div[@id='about']/div[hasclass('row','mt16','o_settings_container')][@name='about_setting_container']" position="inside">
+                <div class="col-12 col-lg-6 o_setting_box" id="acoona_devtools_toggle_box_v2" groups="base.group_system">
+                    <div class="o_setting_right_pane">
+                        <label for="acoona_hide_devtools_2" class="o_form_label">開発者ツールを非表示</label>
+                        <div class="text-muted">一般設定の「開発者ツール」ブロックを非表示にします（管理者のみ設定可能）。</div>
+                        <div class="mt8">
+                            <field name="acoona_hide_devtools_2"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+
+            <!-- 4) Odoo Enterprise への誘導ウィジェットを完全に除去 -->
+            <xpath expr="//widget[@name='res_config_edition']" position="replace">
+                <div class="d-none" id="acoona_hide_res_config_edition"/>
+            </xpath>
+
+            <!-- 5) メールのOdoo表記の除去トグル（初回導入時の互換性のためUIは一旦見送り。設定はir.config_parameterで有効） -->
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- 一般設定: About セクション内のモバイルストア誘導（Google Play / App Store）を非表示 -->
+    <record id="acoona_branding_about_hide_mobile_badges" model="ir.ui.view">
+        <field name="name">res.config.settings.acoona.branding2.about.hide.mobile.badges</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="priority" eval="2700"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='appstore'] | //div[@id='acoona_hide_appstore_links'] | //div[@id='acoona_hide_mobile_badges']" position="replace">
+                <div class="d-none" id="acoona_hide_mobile_badges"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

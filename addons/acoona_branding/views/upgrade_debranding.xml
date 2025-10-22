@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- 一般設定: アップグレード誘導パネルを完全に非表示 -->
+    <record id="acoona_branding_res_config_hide_upgrade" model="ir.ui.view">
+        <field name="name">res.config.settings.acoona.branding2.hide.upgrade</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="priority" eval="5000"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='inter_company'] | //div[@id='acoona_hide_upgrade_box'] | //div[contains(@class,'o_upgrade_panel')]" position="replace">
+                <div class="d-none" id="acoona_hide_upgrade_box"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

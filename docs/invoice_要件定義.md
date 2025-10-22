@@ -1,10 +1,10 @@
-# Odoo v16における日本のインボイス制度対応請求書モジュール（l10n_jp_invoice_system）技術仕様書
+# Odoo v16における日本のインボイス制度対応請求書モジュール（acoona_l10n_jp_invoice_system）技術仕様書
 
 ## 序論：プロジェクトの目的とアーキテクチャ方針
 
 本技術仕様書は、Odoo Version 16環境において、日本の適格請求書等保存方式（以下、インボイス制度）に完全準拠した請求書レイアウトモジュールを開発するための包括的な設計図を提供するものです。本プロジェクトの最終目標は、単に法令要件を満たす請求書を印刷することに留まりません。Odooの標準機能とエコシステムにシームレスに統合され、将来のメンテナンス性や拡張性にも優れた、堅牢かつ安定したソリューションを構築することにあります。
 
-開発対象となるカスタムモジュール（技術名：l10n_jp_invoice_system）は、Odooの「ドキュメントレイアウト設定」に「Japan」という選択肢を追加し、ユーザーが会社単位で日本仕様の請求書レイアウトを標準として選択できるようにするものです。
+開発対象となるカスタムモジュール（技術名：acoona_l10n_jp_invoice_system）は、Odooの「ドキュメントレイアウト設定」に「Japan」という選択肢を追加し、ユーザーが会社単位で日本仕様の請求書レイアウトを標準として選択できるようにするものです。
 
 本仕様書で採用する基本アーキテクチャは、「車輪の再発明を避ける」というOdoo開発における重要な原則に基づいています。日本のローカライゼーションに関しては、Odoo Community Association (OCA) の l10n-japan リポジトリにおいて、既に多くの専門家による貢献が存在します 。特に、インボイス制度の根幹をなす「適格請求書発行事業者登録番号」のデータモデルについては、OCAが提供する既存モジュールを最大限に活用します。これにより、開発工数を削減し、コミュニティ標準との互換性を確保し、長期的なメンテナンスコストを低減させることが可能となります。
 
@@ -34,7 +34,7 @@
 
 #### 1.1.3. 技術的詳細
 
-- 依存モジュール: 我々が開発する l10n_jp_invoice_system モジュールの __manifest__.py ファイルに、l10n_jp_account_report_registration_number を依存関係として明記します。
+- 依存モジュール: 我々が開発する acoona_l10n_jp_invoice_system モジュールの __manifest__.py ファイルに、l10n_jp_account_report_registration_number を依存関係として明記します。
 - 追加されるフィールド: 上記OCAモジュールをインストールすると、res.company モデル（会社情報）に l10n_jp_registration_number という名称のフィールド（データ型: Char, サイズ: 14）が追加されます。
 - データ入力: Odooの管理者は、設定 > ユーザーと企業 > 会社メニューから自社の会社情報を開き、この l10n_jp_registration_number フィールドに登録番号を入力する必要があります。この手順は、モジュールの導入マニュアル等で明確に指示されるべきです。
 
@@ -53,7 +53,7 @@ ir.ui.view モデルへの Many2one リレーションシップであり、選�
 まず、日本仕様の請求書のヘッダーやフッターの基礎となる、新しいレイアウトテンプレートを定義します。
 
 - ファイル作成: モジュール内に views/report_layouts.xml というXMLファイルを作成します。
-- テンプレート定義: このXMLファイル内に、新しいQWebテンプレートを <template> タグを用いて定義します。このテンプレートには、モジュール内で一意となるID（例: l10n_jp_invoice_system.external_layout_jp）を付与します。
+- テンプレート定義: このXMLファイル内に、新しいQWebテンプレートを <template> タグを用いて定義します。このテンプレートには、モジュール内で一意となるID（例: acoona_l10n_jp_invoice_system.external_layout_jp）を付与します。
 - 標準レイアウトの継承: ゼロからレイアウトを構築するのではなく、Odooの標準的な外部レイアウト（例: web.external_layout_standard）を継承します。これにより、基本的なヘッダー・フッター構造、CSSスタイル、および会社ロゴや住所などの表示ロジックを再利用できます 10。継承の構文は  
 <template id="external_layout_jp" inherit_id="web.external_layout_standard"> のようになります。このテンプレート内では、後述する請求書本体の変更とは別に、レイアウト自体に特化した変更（例えば、会社印の表示スペースの確保など）を xpath を用いて行います。
 
@@ -94,7 +94,7 @@ class ResCompany(models.Model):
  def _onchange_l10n_jp_use_japan_layout(self):  
  if self.l10n_jp_use_japan_layout:  
             self.external_report_layout_id = self.env.ref(  
- 'l10n_jp_invoice_system.external_layout_jp'  
+ 'acoona_l10n_jp_invoice_system.external_layout_jp'  
             )  
  else:  
  # Revert to Odoo's default layout if unchecked  
@@ -121,7 +121,7 @@ XML
  </template>  
 
 - xpathによる変更: テンプレート内では、xpath 式を用いて、変更したい箇所をピンポイントで特定し、要素の追加、置換、属性の変更などを行います 17。例えば、発行事業者登録番号をヘッダーに追加する、顧客名の敬称（様、御中）の表示を調整する、税率ごとの合計金額欄を全面的に置き換える、といった操作を正確に実行できます。
-- カスタムレイアウトの適用: 請求書全体を囲むレイアウトとして、第1章で作成した l10n_jp_invoice_system.external_layout_jp を適用する必要があります。これは、請求書オブジェクト（o）が持つ会社情報（o.company_id）に設定されたレイアウト設定を条件に、動的に切り替えることで実現します。具体的には、t-call ディレクティブを t-if 条件でラップし、o.company_id.l10n_jp_use_japan_layout が True の場合に我々のカスタムレイアウトを呼び出すように変更します。
+- カスタムレイアウトの適用: 請求書全体を囲むレイアウトとして、第1章で作成した acoona_l10n_jp_invoice_system.external_layout_jp を適用する必要があります。これは、請求書オブジェクト（o）が持つ会社情報（o.company_id）に設定されたレイアウト設定を条件に、動的に切り替えることで実現します。具体的には、t-call ディレクティブを t-if 条件でラップし、o.company_id.l10n_jp_use_japan_layout が True の場合に我々のカスタムレイアウトを呼び出すように変更します。
 
 ### 2.2. コンプライアンスのための詳細フィールドマッピング
 
@@ -388,13 +388,13 @@ XML
 
 ## 第4章: 最終的なモジュール構造と導入計画
 
-本章では、開発するカスタムモジュール l10n_jp_invoice_system の全体像をまとめ、専門的な開発・導入プロセスにおけるベストプラクティスを提示します。
+本章では、開発するカスタムモジュール acoona_l10n_jp_invoice_system の全体像をまとめ、専門的な開発・導入プロセスにおけるベストプラクティスを提示します。
 
 ### 4.1. モジュールのディレクトリ構造案
 
 一貫性と保守性を確保するため、Odooの標準的な慣習に従った、明確なディレクトリ構造を採用します。
 
-l10n_jp_invoice_system/  
+acoona_l10n_jp_invoice_system/  
 ├── __init__.py               # Pythonパッケージとして認識させるためのファイル  
 ├── __manifest__.py           # モジュールのメタデータと依存関係を定義  
 ├── i18n/                     # 翻訳ファイルを格納  
@@ -440,8 +440,8 @@ Python
 #### 4.3.1. 導入手順
 
 - バージョン管理: 全てのカスタムコードはGitリポジトリで管理することを強く推奨します。
-- 依存関係の解決: l10n_jp_invoice_system モジュールをOdooの addons パスに配置する前に、__manifest__.py に記載されているすべての依存モジュール（特にOCAリポジトリから入手するもの）が正しく配置され、Odooから認識されていることを確認します。
-- インストール: Odooの アプリ メニューから l10n_jp_invoice_system を検索し、インストールを実行します。
+- 依存関係の解決: acoona_l10n_jp_invoice_system モジュールをOdooの addons パスに配置する前に、__manifest__.py に記載されているすべての依存モジュール（特にOCAリポジトリから入手するもの）が正しく配置され、Odooから認識されていることを確認します。
+- インストール: Odooの アプリ メニューから acoona_l10n_jp_invoice_system を検索し、インストールを実行します。
 - 初期設定:
 - 設定 > ユーザーと企業 > 会社 を開き、自社の「登録番号」(l10n_jp_registration_number) を正確に入力します。
 - 設定 > 一般設定 > 会社 セクションに進み、「日本仕様の請求書レイアウトを使用する」チェックボックスをオンにして設定を保存します。

@@ -79,7 +79,7 @@ addons/
 - 主要 JS は `static/src/js/`、スタイルは `static/src/scss/` に配置。
 - OWL/サービスパッチ時は競合を避けるため `registry.category` を正しく操作。
 - SCSS はトークン (`$color-primary` など) を定義し、`@import` 順序を `tokens → base → components` とする。
-- **住所フォームのレイアウト注意:** `l10n_jp_address_layout` が生成する住所行は `.o_address_format` 配下に `street`, `state_id`, `city` などを縦に並べます。テーマ側で横並びを調整する際は、以下のガイドラインに従いフォーム幅の変動（固定サイドバーなど）でも破綻しないようにすること。
+- **住所フォームのレイアウト注意:** `acoona_l10n_jp_address_layout` が生成する住所行は `.o_address_format` 配下に `street`, `state_id`, `city` などを縦に並べます。テーマ側で横並びを調整する際は、以下のガイドラインに従いフォーム幅の変動（固定サイドバーなど）でも破綻しないようにすること。
   1. `.o_address_state` / `.o_address_city` の幅を 50% にする場合は、既存の `margin-right: 2%` を明示的に打ち消すか、`display:flex` + `gap` で余白を制御する。中途半端に幅だけ上書きすると合計幅が 100% を超え、フィールドが重なる。
   2. クラスのない既存構造にも対応できるよう、テーマでは `div:has(> .o_address_state)` のように継承された DOM を検知してまとめて制御する。新しいラッパークラス（`o_address_state_city_row`）を導入した場合は両方にスタイルを適用する。
   3. SCSS 変更後は必ず `docker compose exec odoo odoo -c /etc/odoo/odoo.conf -u acoona_theme --stop-after-init`（ならびに関連テーマ）でアセットを再生成し、ブラウザ側でもハードリロードして確認する。
@@ -102,7 +102,7 @@ addons/
 ---
 
 ## 7. コミット・レビュー・ドキュメント
-- コミットメッセージ形式: `[module_name] Imperative summary`（例: `[l10n_jp_invoice_system] Fix external layout pointer`）。
+- コミットメッセージ形式: `[module_name] Imperative summary`（例: `[acoona_l10n_jp_invoice_system] Fix external layout pointer`）。
 - PR には以下を含める: 目的・背景、変更内容、影響範囲、UI 変更のスクリーンショット、テスト結果、関連 Issue。
 - README や要件定義 (`docs/`) に影響がある場合は漏れなく更新。
 - モジュールの利用手順や既知の制約は該当モジュールの README に追記。

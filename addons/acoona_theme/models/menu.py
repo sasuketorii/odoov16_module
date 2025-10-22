@@ -61,7 +61,7 @@ class IrUiMenu(models.Model):
             "account_budget.menu_finance_budget_root": "account_balance_wallet",
             "account_asset.menu_finance_assets": "account_balance_wallet",
             "account_accountant.board_redirect": "query_stats",
-            "l10n_jp_invoice_system.menu_root": "description",
+            "acoona_l10n_jp_invoice_system.menu_root": "description",
             "acoona_invoice.menu_root": "receipt_long",
             "acoona_theme.menu_settings": "brush",
         }

@@ -1,1 +1,1 @@
-Ensured Japan report layout availability by adding report.layout data and implementing res.company._register_hook to create/update the layout record referencing l10n_jp_invoice_system.external_layout_jp. Document layout wizard template also handles base.document.layout records.
+Ensured Japan report layout availability by adding report.layout data and implementing res.company._register_hook to create/update the layout record referencing acoona_l10n_jp_invoice_system.external_layout_jp. Document layout wizard template also handles base.document.layout records.

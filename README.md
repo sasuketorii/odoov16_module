@@ -8,8 +8,8 @@
 >
 > - 国内の Odoo コミュニティで初めて、インボイス制度適合の帳票テンプレートを **標準 PDF レポートとして完全実装**。
 > - Odoo 16 のポータル/バックエンド双方で **Acoona 独自ブランドの一貫した UI/UX** を提供し、政府系調達案件で採択された初の日本人開発テーマ。
-> - `report_layout_guard` により **外部レイアウトの自己修復機構** を世界で初めて導入。壊れた帳票設定でも 1 クリックで復元。
-> - `acoona_invoice` & `acoona_mail_template` による **銀行口座・軽減税率情報の動的埋め込み** は、国内ベンダーで初のプロダクション投入事例。
+> - `acoona_report_layout_guard` により **外部レイアウトの自己修復機構** を世界で初めて導入。壊れた帳票設定でも 1 クリックで復元。
+> - `acoona_l10n_jp_invoice_system` & `acoona_mail_template` による **銀行口座・軽減税率情報の動的埋め込み** は、国内ベンダーで初のプロダクション投入事例。
 
 このリポジトリは、日本市場向けに Odoo 16 をローカライズするためのモジュール群・運用ノウハウ・テスト資産を一括管理するプロジェクトです。新しく参加した開発者・QA・テクニカルライターが、環境構築からデリバリー、保守まで迷わず走り切れるように、詳細なチェックリストとベストプラクティスをまとめています。
 
@@ -55,11 +55,11 @@
 
 | カテゴリ | Acoona の成果 | 参考モジュール |
 | --- | --- | --- |
-| インボイス制度対応 | `acoona_invoice` が軽減税率混在時も税区分を自動整列し、日次締めレポートで再利用可能なタックスサマリを生成。 | `addons/acoona_invoice/` |
-| 帳票自己修復 | `report_layout_guard` が誤設定や外部レイアウト削除を検出し、`ir.ui.view` を自動補正。Odoo 本体でも未提供の独自機構。 | `addons/report_layout_guard/` |
-| ブランド統一 | `acoona_theme` と `acoona_mail_template` により管理画面・ポータル・メールを統一ブランドで提供。日本人チームによる初の大規模導入。 | `addons/acoona_theme/`, `addons/acoona_mail_template/` |
-| チャットボットローカライズ | `discuss_customization` が Odoo Bot を Acoona Bot に差し替え、日本語チュートリアルを提供。 | `addons/discuss_customization/` |
-| 住所・銀行口座最適化 | 47 都道府県と銀行支店データを整備し、半角カナ→全角変換や郵便番号整形を自動化。 | `addons/l10n_jp_address_layout/`, `addons/acoona_default_jp/` |
+| インボイス制度対応 | `acoona_l10n_jp_invoice_system` が Qualified Invoice レイアウト、税率別サマリ、銀行表示を標準帳票として提供し、電子帳簿保存法の証憑要件にも対応。 | `addons/acoona_l10n_jp_invoice_system/` |
+| 帳票自己修復 | `acoona_report_layout_guard` が誤設定や外部レイアウト削除を検出し、`ir.ui.view` を自動補正。Odoo 本体でも未提供の独自機構。 | `addons/acoona_report_layout_guard/` |
+| ブランド統一 | `acoona_theme`・`acoona_branding`・`acoona_mail_template` により管理画面・ポータル・メール・設定ウィザードまで Acoona ブランドに統一。 | `addons/acoona_theme/`, `addons/acoona_branding/`, `addons/acoona_mail_template/` |
+| チャット&ポータルローカライズ | `acoona_discus` が Bot 名称・アイコン・初期メッセージを日本語化し、`portal_odoo_debranding` と `mail_debrand` が外部公開画面の Odoo ロゴを除去。 | `addons/acoona_discus/`, `addons/portal_odoo_debranding/`, `addons/mail_debrand/` |
+| 住所・銀行口座最適化 | 47 都道府県の日本語化・日本式住所レイアウト・支店コード付き銀行口座管理を標準機能化。 | `addons/acoona_jp_prefecture_localization/`, `addons/acoona_l10n_jp_address_layout/`, `addons/acoona_jp_bank/` |
 
 **ファースト実績（日本人開発チームとして初）**
 - 国税庁の要件を満たすインボイス PDF を標準帳票として OSS 公開。
@@ -125,21 +125,91 @@ docker compose logs -f odoo      # ログ監視（Ctrl+C で離脱）
 
 ## モジュールカタログ
 
-| モジュール | 役割 | 主な機能 | 関連ドキュメント |
-| --- | --- | --- | --- |
-| `acoona_invoice` | インボイス帳票強化 | 税率別サマリ、銀行口座表示、軽減税率アイコン、自動レイアウト修復フック | `docs/jp_invoice_layout_requirements.md`, `docs/acoona_invoice_integration_status.md` |
-| `acoona_mail_template` | メールブランド統一 | 送信テンプレートの Acoona 化、HTML レスポンシブ対応、翻訳済み件名 | `addons/acoona_mail_template/data/mail_template_data.xml` |
-| `acoona_theme` | バックエンドテーマ | サイドバー・トップバー刷新、アイコン差替え、ダークモード準備 | `addons/acoona_theme/static/src/scss/` |
-| `discuss_customization` | チャットローカライズ | Acoona Bot、カスタムアバター、ウェルカムメッセージ日本語化 | `docs/translation_audit_20251017.md` |
-| `l10n_jp_invoice_system` | インボイス制度核 | 帳票テンプレート、軽減税率対応、レポートウィザード拡張、`report_layout_guard` 連携 | `docs/jp_invoice_system_handoff_20251018.md` |
-| `report_layout_guard` | レイアウト自己修復 | ビュー参照の検証＆補正、失敗時フォールバック、テスト同梱 | `docs/report_layout_guard_status.md` |
-| `acoona_default_jp` | 初期設定 | 言語/タイムゾーン/銀行フォーマットの初期値、既存データ保護ロジック | `addons/acoona_default_jp/i18n/ja.po` |
-| `acoona_invoice` 補助 | `hooks.py` で起動時に外部レイアウトポインタを修正、`report_layout_guard` の防波堤として動作 | - |
-| `report_layout_guard/tests` | 自動テスト | 帳票設定エラーからの復旧を SavepointCase で再現 | - |
+以下では、本リポジトリに含まれる各アドオンの機能をカテゴリ別に列挙します。コードベースに実装されている振る舞いを網羅的に記載しているため、導入可否や改修影響の整理に活用してください。
+
+### 会計・法令対応
+
+#### acoona_l10n_jp_invoice_system (`addons/acoona_l10n_jp_invoice_system/`)
+- `res.company` に適格請求書登録番号、社印、部署・担当者・支払案内・備考テンプレート、敬称やリード文など日本特有の請求書設定項目を追加し、`res.config.settings` から編集可能にする。
+- `base.document.layout` ウィザードを拡張し、日本レイアウト有効時に削除済みビュー参照を自動修復・既定レイアウトを再割当て。プレビュー生成時の例外もフォールバック HTML に置換。
+- `account.move` に振込先銀行選択・取引日を追加し、税率別サマリ生成、銀行ブロック構築、敬称付き宛名整形、日付表示ユーティリティなど QWeb 用ヘルパを提供。
+- 請求書・クレジットノート・見積・受注・発注の QWeb テンプレートを日本語 UI／税区分テーブル／銀行情報付きで再定義し、ポータル表示・HTML レポートとも統一。
+- 会社作成時に標準 10% 税を売上・仕入デフォルト税へ割当てし、`post_init_hook` で既存データベースの外部レイアウト参照を `acoona_report_layout_guard` と連携して補正。
+- `res.partner` に敬称付き表示名メソッド `_l10n_jp_display_name_with_suffix` を実装し、法人には「御中」、個人には「様」を付与。
+
+#### acoona_report_layout_guard (`addons/acoona_report_layout_guard/`)
+- `res.company` の create/write をフックして `external_report_layout_id` に `report.layout` の ID が渡っても対応する `ir.ui.view` へ変換し保存。
+- レイアウト参照が欠損／削除／非 QWeb の場合に標準レイアウトへ自動フォールバックし、冪等に修復。
+- アンインストール時に標準ビューへ戻す `_rlg_reset_to_standard_layout` を提供し、他モジュールのフックから再利用可能にする。
+
+#### acoona_jp_bank (`addons/acoona_jp_bank/`)
+- `jp.bank.branch` モデルで銀行・支店番号・支店名（カナ含む）の最小マスタを保持し、同一銀行内ユニーク制約を付与。
+- `res.partner.bank` に支店番号・支店名（カナ）・口座種別・口座名義カナを追加し、3 桁支店番号／7 桁口座番号チェック、半角カナの全角化、枝番からの自動補完をサポート。
+- `res.bank` に日本銀行フラグ `isJapanese` を追加し、日本マスタデータを識別。
+- `account.setup.bank.manual.config` ウィザードへ日本向け項目を追加し、標準処理後に生成された銀行口座へ追記。失敗時は `ir.logging` に WARN を残して標準動作を継続。
+- `data/res_bank_jp_min.xml` で最低限の銀行・支店データを配布し、日本市場向け運用を即時可能にする。
+
+#### acoona_jp_prefecture_localization (`addons/acoona_jp_prefecture_localization/`)
+- 旧モジュール名 `jp_prefecture_localization` からのアップグレードに備え、`pre_init_hook` で `ir.module_module` や `ir.model.data` 参照を一括リネーム。
+- `post_init_hook` で `res.country.state` に 47 都道府県を確実に作成／更新し、名称を日本語化・コードを 01〜47 に統一。
+- 日本国 (`base.jp`) が存在しない場合は警告ログを残し、処理結果を INFO ログに詳細出力。
+
+#### acoona_l10n_jp_address_layout (`addons/acoona_l10n_jp_address_layout/`)
+- 取引先フォームに日本式住所行（郵便番号→都道府県→市区町村→丁目・番地）を表示するレイアウトを提供。
+- `res.country` の `address_view_id` を置き換え、日本国内の住所入力で常に当該ビューテンプレートを使用。
+- 支店・連絡先など子レコード編集時の読み取り専用制御や郵便番号フィールドのプレースホルダを日本語運用に合わせて調整。
+
+#### report_alternative_layout (`addons/report_alternative_layout/`)
+- `report.paperformat` に代替レイアウト適用フラグと「ヘッダーに住所を毎ページ表示」設定を追加し、設定値を QWeb レンダリング時のコンテキストへ自動反映。
+- `ir.actions.report` に商業パートナー優先表示、振込先銀行表示、レポートヘッダーに伝票番号・任意日付を出力するオプション、および日付取得用フィールド参照を追加。
+- レポートレンダリング中に紙面設定フラグをコンテキストへ注入し、指定された銀行口座・日付情報・ヘッダ表示を安全に評価。
+- 付属の XML データで代替レイアウト QWeb、ペーパーフォーマット、設定ビューを登録し、UI から切替・管理できるようにする。
+
+### ブランド / UX
+
+#### acoona_branding (`addons/acoona_branding/`)
+- 一般設定に Acoona 専用セクションを追加し、会社サイトリンクと「開発者ツールを非表示」トグルを提供。設定値は `ir.config_parameter` (`acoona_branding.hide_devtools`) に保存。
+- 同画面からメールの Odoo ブランディング除去を有効/無効化できる `acoona_mail_debrand` 設定を提供。
+- バックエンドの App Store / Upgrade / About ブロックを XPath で差し替え、Odoo 公式バナーを全て非表示化。
+- ポータルテンプレート（`web.brand_promotion`、`portal.portal_record_sidebar`）を継承し、Acoona 以外のプロモーションやフッターを抑止。
+- 送信メール本文を正規化する `clean_odoo_branding` を実装し、`odoo.com` へのリンク・UTM パラメータ・「Powered by Odoo」表記を除去して HTML を再整形。
+
+#### acoona_theme (`addons/acoona_theme/`)
+- バックエンドのサイドバー固定／トップバー再設計を行う SCSS・XML・JS 資産を提供し、カラーパレットやダークモード前提の配色を定義。
+- `webclient_branding.js` や `sidebar_menu.js` によるメニュー動作改善、ダイアログタイトル・カラーフィールドの UI パッチ、フロントエンドブランド適用 JS を同梱。
+- ログイン画面・ヘッダーのブランド要素を Views で差し替え、アセット経由で Acoona アイコン・フォントを読み込む。
+- `pre_init_hook` / `post_init_hook` でトップレベルメニューごとにオリジナル PNG アイコンを base64 で設定し、アンインストール時に後処理を実施。
+
+#### acoona_mail_template (`addons/acoona_mail_template/`)
+- HTML テンプレートを日本語化した 13 件のメール（ポータル招待、RFQ 送付、購買注文、購買リマインダー、請求書送付、クレジットノート、支払領収書、ユーザー招待／サインアップ／パスワードリセット／未登録リマインダー、販売見積／確定／キャンセル通知）を配布。
+- すべて Acoona ロゴ・Noto Sans JP ベースのレスポンシブレイアウトを採用し、自動削除 (`auto_delete=True`) やレポート添付設定を適切に維持。
+- 件名・本文を敬体に統一し、金額・日付は `format_amount`・`format_date` を利用して地域設定に追従。
+
+#### acoona_discus (`addons/acoona_discus/`)
+- モジュール初期化時に `res.partner` の OdooBot を「Acoona Bot」へ改名し、`static/img/acoona_bot.png` を 1920px アバターとして設定。
+- `post_init_hook` で `__system__` ユーザーを含む既存添付ファイルを検索し、ファイル名・MIME タイプを `acoona_bot.png` / `image/png` に統一。
+- 以降も `init()` フックで名称リセットと画像再適用を行い、アーカイブ状態を問わず Bot 情報を保全。
+
+#### portal_odoo_debranding (`addons/portal_odoo_debranding/`)
+- ポータルホームのブランドプロモーションセクションを完全非表示にし、閲覧レコードのフッターバナーも排除。
+- 追加テンプレートを持たず、既存ビューを XPath で条件付き無効化する軽量設計。
+
+#### mail_debrand (`addons/mail_debrand/`)
+- 送信メール本文から `odoo.com` へのリンクや「Powered by Odoo」テキストを検出して削除し、OCA メンテナンスの debranding ロジックを適用。
+- ほかの Acoona ブランド系モジュールと併用しても重複しないよう、既存テンプレート編集を伴わず送信時にフィルタリング。
+
+### 運用補助
+
+#### remove_odoo_enterprise (`addons/remove_odoo_enterprise/`)
+- 一般設定画面の App Store セクションを強制的に非表示にし、Enterprise 版への誘導を防止。
+- Community エディション運用を前提とした環境で、誤操作による Enterprise 機能追加を抑止。
 
 補助リソース:
-- `backups/odoo_v16_backup_20251016.sql` : 機能検証用サンプルデータベース。
-- `translation_prompt.md` : ChatGPT に翻訳タスクを委譲する際のプロンプトテンプレート。
+- `docs/jp_invoice_system_handoff_20251018.md` — インボイス制度対応モジュールのハンドオーバー資料。
+- `docs/acoona_invoice_integration_status.md` — 旧 `acoona_invoice` 機能を本体へ統合した経緯の記録。
+- `docs/acoona_report_layout_guard_status.md` — 帳票レイアウトガードの改善履歴と検証ログ。
+- `backups/odoo_v16_backup_20251016.sql` — デモ用サンプルデータベース（検証・再現目的のみ）。
+- `translation_prompt.md` — 翻訳タスクを AI に委譲する際のプロンプトテンプレート。
 
 ---
 
@@ -150,7 +220,7 @@ docker compose logs -f odoo      # ログ監視（Ctrl+C で離脱）
    - 既存 Issue や PR を検索し、前提・制約を整理。
 2. **調査**
    - `rg`, `git grep`, `odoo shell` を使い既存実装を確認。
-   - 帳票関係は `report_layout_guard_status.md` の履歴を参照。
+   - 帳票関係は `acoona_report_layout_guard_status.md` の履歴を参照。
 3. **実装**
    - `_inherit` による最小差分拡張を優先。
    - データ更新は XML/CSV を使用し、`noupdate` フラグの意図をコメント化。
@@ -164,7 +234,7 @@ docker compose logs -f odoo      # ログ監視（Ctrl+C で離脱）
    - コミットメッセージ形式: `[module_name] Imperative summary`
    - PR テンプレート: 目的、変更内容、影響範囲、UI 差分、テスト結果、関連 Issue。
 7. **デリバリー**
-   - ステージング環境にデプロイ後、`report_layout_guard` のテストを再実行。
+   - ステージング環境にデプロイ後、`acoona_report_layout_guard` のテストを再実行。
    - ステークホルダー承認後、本番反映。
 
 ---
@@ -179,8 +249,8 @@ docker compose logs -f odoo      # ログ監視（Ctrl+C で離脱）
   docker compose exec odoo odoo -c /etc/odoo/odoo.conf -i <module> --test-enable --stop-after-init
   ```
 - **カバレッジ状況（2025-10-18 時点）**:
-  - `l10n_jp_invoice_system`: レポートテンプレート存在、外部レイアウトポインタ修復、税率サマリ生成をテスト。
-  - `report_layout_guard`: 不正ポインタ検出・自己修復・フォールバックを SavepointCase で検証。
+  - `acoona_l10n_jp_invoice_system`: レポートテンプレート存在、外部レイアウトポインタ修復、税率サマリ生成をテスト。
+  - `acoona_report_layout_guard`: 不正ポインタ検出・自己修復・フォールバックを SavepointCase で検証。
   - `acoona_theme`: 現状は目視確認ベース。自動 UI テスト追加が TODO。
 
 ---
@@ -218,11 +288,11 @@ docker compose logs -f odoo      # ログ監視（Ctrl+C で離脱）
 | バージョン | コミット | 日付 | 概要 |
 | --- | --- | --- | --- |
 | v0.1.0 | `8e15e620db62b953c6bfacd5dc9249a194459b12` | 2025-09-25 | インボイス帳票第1版、Acoona ブランドテーマ初版。 |
-| main 最新 | `63d03004490d298d3e9a5d524cc992ea179fc7bd` | 2025-10-20 | リポジトリ全面刷新、`acoona_invoice` / `report_layout_guard` 追加、翻訳体系整備。 |
+| main 最新 | `63d03004490d298d3e9a5d524cc992ea179fc7bd` | 2025-10-20 | リポジトリ全面刷新、`acoona_l10n_jp_invoice_system` への機能統合と `acoona_report_layout_guard` 追加、翻訳体系整備。 |
 
 ### 運用チェックリスト
 - [ ] `docker compose ps` で Odoo/PostgreSQL が稼働しているか。
-- [ ] `report_layout_guard` テストを週次で実行し、外部レイアウト破損に備える。
+- [ ] `acoona_report_layout_guard` テストを週次で実行し、外部レイアウト破損に備える。
 - [ ] 翻訳ファイルを月次でレビューし、新機能に合わせて更新。
 - [ ] バックアップリストを最新化し、リストア演習を四半期ごとに実施。
 
@@ -232,11 +302,11 @@ docker compose logs -f odoo      # ログ監視（Ctrl+C で離脱）
 
 | 症状 | 原因例 | 対処 |
 | --- | --- | --- |
-| ビュー/レポートが表示されない | XML ロード失敗、外部レイアウト破損 | `docker compose logs -f odoo` でトレース確認 → `report_layout_guard` のテストを実行 → 必要に応じて `-u <module>`。 |
+| ビュー/レポートが表示されない | XML ロード失敗、外部レイアウト破損 | `docker compose logs -f odoo` でトレース確認 → `acoona_report_layout_guard` のテストを実行 → 必要に応じて `-u <module>`。 |
 | 翻訳が反映されない | `--i18n-import` 未実行、キャッシュ残存 | `docker compose exec odoo odoo -c /etc/odoo/odoo.conf -u <module>` → ブラウザをハードリロード (Ctrl/Cmd + Shift + R)。 |
 | フロント資産が古い | ブラウザキャッシュ、`ir.attachment` 未更新 | `--dev=all` でアセット再生成 → ブラウザキャッシュ削除。 |
 | ドメイン/権限エラー | ACL/Record Rule 不整合 | `sudo()` + `with_user()` でアクセス可否テスト → CSV（`security/ir.model.access.csv`）を修正。 |
-| 銀行口座表示がおかしい | `res.partner.bank` データ不備、カナ未入力 | `acoona_invoice` の設定メニューから口座情報を確認 → 半角カナを全角文字に自動変換。 |
+| 銀行口座表示がおかしい | `res.partner.bank` データ不備、カナ未入力 | `acoona_l10n_jp_invoice_system` の設定パネル（会計設定内「日本向け請求書レイアウト」）から口座情報を確認 → 半角カナを全角文字に自動変換。 |
 
 ---
 
@@ -245,7 +315,7 @@ docker compose logs -f odoo      # ログ監視（Ctrl+C で離脱）
 - **内部ドキュメント**
   - `docs/odoo16_development_documentation.md`: 開発プロセスの詳細。
   - `docs/jp_invoice_system_handoff_20251018.md`: インボイス制度対応の引き継ぎ資料。
-  - `docs/report_layout_guard_status.md`: レイアウトガード改善の履歴。
+  - `docs/acoona_report_layout_guard_status.md`: レイアウトガード改善の履歴。
 - **外部リンク**
   - [Odoo 16 Developer Documentation](https://www.odoo.com/documentation/16.0/developer.html)
   - [Odoo ORM リファレンス](https://www.odoo.com/documentation/16.0/developer/reference/orm.html)
@@ -259,4 +329,3 @@ docker compose logs -f odoo      # ログ監視（Ctrl+C で離脱）
 ---
 
 この README は運用状況に合わせて継続的に更新します。改善案や不足点があれば Issues へ投稿し、併せて `docs/` に記録してください。
-

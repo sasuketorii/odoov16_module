@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_partner_bank_form_min_jp" model="ir.ui.view">
+    <field name="name">res.partner.bank.form.min.jp</field>
+    <field name="model">res.partner.bank</field>
+    <field name="inherit_id" ref="base.view_partner_bank_form"/>
+    <field name="arch" type="xml">
+      <!-- Replace outer group to avoid right column and unwanted toggles -->
+      <xpath expr="//sheet/group" position="replace">
+        <group col="2">
+          <field name="bank_id" string="銀行" options="{'no_create_edit': True}"
+                 domain="[('isJapanese','=',True)]" placeholder="三菱UFJ銀行"/>
+          <field name="jpBranchCode" string="支店番号" placeholder="001"/>
+          <field name="jpBranchName" string="支店名（カナ）" placeholder="シンジュク"/>
+          <field name="jpAccountType" string="口座種類"/>
+          <field name="acc_number" string="口座番号" modifiers="{'required': True}"
+                 placeholder="1234567"/>
+          <field name="jpAccountHolderKana" string="口座名義人（カナ）"
+                 modifiers="{'required': True}" placeholder="ヤマダタロウ"/>
+          <field name="partner_id" string="連絡先（この銀行口座の所有者）"/>
+          <field name="allow_out_payment" string="この口座を支払いに使用可" widget="boolean_toggle"/>
+          <field name="active" invisible="1"/>
+        </group>
+      </xpath>
+    </field>
+  </record>
+</odoo> 

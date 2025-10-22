@@ -15,7 +15,7 @@
 - `install_module.py`: インストール補助スクリプト（任意）。
 
 ## 既存モジュール（現状）
-- `discuss_customization`
+- `acoona_discus`
 - `l10n_jp_partner_title_qweb`
 - `mail_debrand`
 - `jp_prefecture_localization`
@@ -25,8 +25,8 @@
 - `report_alternative_layout`
 - `portal_odoo_debranding`
 - `sasuke_backend_theme2`
-- `l10n_jp_address_layout`
-- `jp_bank_account_minimal`
+- `acoona_l10n_jp_address_layout`
+- `acoona_jp_bank`
 - `remove_odoo_enterprise`
 
 ## 開発の基本方針

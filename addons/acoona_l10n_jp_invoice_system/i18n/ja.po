@@ -1,0 +1,67 @@
+## Odoo 16 Translation file (ja)
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-13 00:00+0000\n"
+"PO-Revision-Date: 2025-09-13 00:00+0000\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: acoona_l10n_jp_invoice_system
+msgid "Japan"
+msgstr "Japan"
+
+#. module: acoona_l10n_jp_invoice_system
+msgid "Japan Invoice Settings"
+msgstr "日本向けインボイス設定"
+
+#. module: acoona_l10n_jp_invoice_system
+msgid "Japan Registration Number"
+msgstr "登録番号（日本）"
+
+#. module: acoona_l10n_jp_invoice_system
+msgid "登録番号:"
+msgstr "登録番号:"
+
+#. module: acoona_l10n_jp_invoice_system
+msgid "合計金額（税込）"
+msgstr "合計金額（税込）"
+
+#. module: acoona_l10n_jp_invoice_system
+msgid "税抜合計金額"
+msgstr "税抜合計金額"
+
+#. module: acoona_l10n_jp_invoice_system
+msgid "消費税額 (10%)"
+msgstr "消費税額 (10%)"
+
+#. module: acoona_l10n_jp_invoice_system
+msgid "消費税額 (8%)"
+msgstr "消費税額 (8%)"
+
+#. module: acoona_l10n_jp_invoice_system
+msgid "10%対象 税抜合計"
+msgstr "10%対象 税抜合計"
+
+#. module: acoona_l10n_jp_invoice_system
+msgid "8%対象 税抜合計"
+msgstr "8%対象 税抜合計"
+
+#. module: acoona_l10n_jp_invoice_system
+msgid "Show Bank Block on Invoices (JP)"
+msgstr "請求書に銀行口座ブロックを表示（日本）"
+
+#. module: acoona_l10n_jp_invoice_system
+msgid "Default Invoice Remit-to Bank (JP)"
+msgstr "請求書デフォルト振込先（日本）"
+
+#. module: acoona_l10n_jp_invoice_system
+msgid "Invoice Remit-to Bank (JP)"
+msgstr "請求書振込先（日本）"
+
+#. module: acoona_l10n_jp_invoice_system
+msgid "お振込先"
+msgstr "お振込先"
