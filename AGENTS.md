@@ -20,6 +20,7 @@
 | モジュール更新 | `docker compose exec odoo odoo -c /etc/odoo/odoo.conf -u <module> --stop-after-init` | コード変更後の反映。 |
 | テスト実行 | `docker compose exec odoo odoo -c /etc/odoo/odoo.conf -i <module> --test-enable --stop-after-init` | TransactionCase / SavepointCase でテスト。 |
 | アセット再生成 | `docker compose exec odoo odoo -c /etc/odoo/odoo.conf --dev=all` | CSS/JS 変更時のデバッグに有効。 |
+| **キャッシュリセット** | `docker compose stop` → `docker compose up -d` | **データベース保持、最小限の再起動** |
 
 環境変数や資格情報は `.env` で渡し、リポジトリへコミットしません。
 
@@ -123,6 +124,24 @@ addons/
 - **翻訳が反映されない**: `--i18n-export` → `--i18n-import` で PO を再生成、もしくは `-u <module>` で更新。
 - **フロント資産が古い**: ブラウザのハードリロード (Ctrl/Cmd + Shift + R) と `--dev=all` の利用。
 - **ドメインや権限エラー**: ACL/Record Rule を再確認し、`sudo()` で想定アクセス範囲を検証。
+
+### キャッシュリセットの使い分け
+- **「キャッシュリセットで再起動」の指示時**:
+  ```bash
+  docker compose stop
+  docker compose up -d
+  ```
+  - データベースは保持（`-v` フラグは使用しない）
+  - イメージ削除は行わない（`docker system prune` は使用しない）
+  - 既存のデータや設定は残す
+  - アプリケーションキャッシュのみリセット
+
+- **完全リセットが必要な場合**（データベースも削除）:
+  ```bash
+  docker compose down -v
+  docker compose up -d
+  ```
+  - これは明示的に「完全リセット」と指示された場合のみ実行
 
 ---
 

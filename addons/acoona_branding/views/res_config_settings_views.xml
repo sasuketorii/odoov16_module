@@ -33,8 +33,8 @@
             <xpath expr="//div[@id='about']/div[hasclass('row','mt16','o_settings_container')][@name='about_setting_container']" position="inside">
                 <div class="col-12 col-lg-6 o_setting_box" id="acoona_devtools_toggle_box_v2" groups="base.group_system">
                     <div class="o_setting_right_pane">
-                        <label for="acoona_hide_devtools_2" class="o_form_label">開発者ツールを非表示</label>
-                        <div class="text-muted">一般設定の「開発者ツール」ブロックを非表示にします（管理者のみ設定可能）。</div>
+                        <label for="acoona_hide_devtools_2" class="o_form_label text-danger"/>
+                        <div class="text-danger">Python3.10のシニアエンジニア以外が編集するとシステムが破壊される恐れがあります。</div>
                         <div class="mt8">
                             <field name="acoona_hide_devtools_2"/>
                         </div>

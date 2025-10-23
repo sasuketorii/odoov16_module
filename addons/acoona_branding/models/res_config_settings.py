@@ -8,7 +8,7 @@ class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
     acoona_hide_devtools_2 = fields.Boolean(
-        string="Hide Developer Tools",
+        string="システム開発者ツール(Don't Touch!!)",
         default=True,
         config_parameter="acoona_branding.hide_devtools",
     )
