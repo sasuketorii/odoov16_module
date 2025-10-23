@@ -10,7 +10,7 @@
         <record id="view_menu_form_acoona_material_icon" model="ir.ui.view">
             <field name="name">ir.ui.menu.form.acoona.material.icon</field>
             <field name="model">ir.ui.menu</field>
-            <field name="inherit_id" ref="base.view_menu_form"/>
+            <field name="inherit_id" ref="base.edit_menu_access"/>
             <field name="arch" type="xml">
                 <xpath expr="//sheet/group" position="inside">
                     <group string="Acoona Theme" colspan="2">
