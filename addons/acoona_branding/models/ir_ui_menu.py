@@ -27,7 +27,7 @@ class IrUiMenu(models.Model):
             self.env["ir.config_parameter"].sudo().get_param(
                 "acoona_branding.hide_devtools"
             )
-            or "False"
+            or "True"
         )
         return hide_devtools.lower() in {"true", "1"}
 

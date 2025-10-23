@@ -5,11 +5,14 @@
       <nav class="o_main_navbar d-flex justify-content-between"
            t-on-dropdown-item-selected="onNavBarDropdownItemSelection"
            data-command-category="navbar">
+          <t t-set="_raw_apps" t-value="menuService.getApps().filter(app => app.xmlid !== 'mail.menu_root_discuss')"/>
+          <t t-set="should_hide_apps" t-value="shouldHideAppsMenu ? shouldHideAppsMenu() : false"/>
+          <t t-set="apps" t-value="should_hide_apps ? _raw_apps.filter(app => app.xmlid !== 'base.menu_management') : _raw_apps"/>
           <div class="d-flex">
               <div class="top_heading">
                 <!-- Apps Menu -->
-                  <t t-call="web.NavBar.AppsMenu">
-                 <t t-set="apps" t-value="menuService.getApps().filter(app => app.xmlid !== 'mail.menu_root_discuss')"/>
+                  <t t-if="apps.length" t-call="web.NavBar.AppsMenu">
+                 <t t-set="apps" t-value="apps"/>
                 </t>
                   <!-- App Brand -->
                   <DropdownItem
@@ -149,8 +152,8 @@
                         'Acoona Invoice': 'receipt_long',
                         'Acoona Theme': 'brush'
                     }"/>
-                    <ul class="sidebar_menu">
-                        <t t-foreach="menuService.getApps().filter(app => app.xmlid !== 'mail.menu_root_discuss')" t-as="app" t-key="app_index">
+                    <ul class="sidebar_menu" t-if="apps.length">
+                        <t t-foreach="apps" t-as="app" t-key="app_index">
                             <t t-set="icon_name" t-value="app.acoona_material_icon || material_icon_name_map[app.name] || 'apps'"/>
                             <li data-toggle="tooltip" data-placement="right" t-att-title="app.name">
                                 <a role="menuitem"

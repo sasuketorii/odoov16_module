@@ -15,7 +15,7 @@ class IrHttp(models.AbstractModel):
             self.env["ir.config_parameter"].sudo().get_param(
                 "acoona_branding.hide_devtools"
             )
-            or "False"
+            or "True"
         )
 
         info["acoona_hide_devtools"] = hide_devtools.lower() in {"true", "1"}
