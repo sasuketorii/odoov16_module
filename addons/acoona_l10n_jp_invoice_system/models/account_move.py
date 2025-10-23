@@ -2,6 +2,8 @@
 from odoo import api, fields, models
 from odoo.tools import float_is_zero, format_date
 
+from .pdf_filename import build_pdf_filename
+
 
 class AccountMove(models.Model):
     _inherit = "account.move"
@@ -299,3 +301,25 @@ class AccountMove(models.Model):
             if float_is_zero(tax.amount - 8.0, precision_digits=1):
                 return True
         return False
+
+    def _l10n_jp_report_title(self):
+        """Return the most relevant title string shown on JP documents."""
+        self.ensure_one()
+        candidates = [
+            getattr(self, "payment_reference", False),
+            getattr(self, "invoice_payment_ref", False),
+            getattr(self, "invoice_origin", False),
+            self.name,
+        ]
+        for candidate in candidates:
+            if candidate:
+                return candidate
+        return ""
+
+    def _get_report_base_filename(self):
+        self.ensure_one()
+        base_filename = super()._get_report_base_filename()
+        partner_label = self._acoona_invoice_recipient_label()
+        title = self._l10n_jp_report_title()
+        filename = build_pdf_filename("請求書", partner_label, title)
+        return filename or base_filename

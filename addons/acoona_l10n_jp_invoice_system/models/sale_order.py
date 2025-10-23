@@ -4,6 +4,8 @@ from datetime import datetime
 from odoo import api, fields, models
 from odoo.tools import float_is_zero, format_date
 
+from .pdf_filename import build_pdf_filename
+
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
@@ -202,6 +204,27 @@ class SaleOrder(models.Model):
             "lines": [line for line in lines if line],
             "note": note,
         }
+
+    def _l10n_jp_report_title(self):
+        self.ensure_one()
+        candidates = [
+            getattr(self, "client_order_ref", False),
+            getattr(self, "payment_reference", False),
+            getattr(self, "origin", False),
+            self.name,
+        ]
+        for candidate in candidates:
+            if candidate:
+                return candidate
+        return ""
+
+    def _get_report_base_filename(self):
+        self.ensure_one()
+        base_filename = super()._get_report_base_filename()
+        partner_label = self._l10n_jp_recipient_label()
+        title = self._l10n_jp_report_title()
+        filename = build_pdf_filename("見積書", partner_label, title)
+        return filename or base_filename
 
     @staticmethod
     def _l10n_jp_map_account_type(value):

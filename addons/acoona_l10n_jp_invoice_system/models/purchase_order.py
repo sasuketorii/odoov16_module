@@ -4,6 +4,8 @@ from datetime import datetime
 from odoo import api, fields, models
 from odoo.tools import float_is_zero, format_date, format_datetime
 
+from .pdf_filename import build_pdf_filename
+
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
@@ -201,6 +203,33 @@ class PurchaseOrder(models.Model):
             "lines": [line for line in lines if line],
             "note": note,
         }
+
+    def _l10n_jp_report_document_label(self):
+        self.ensure_one()
+        if self.state in ("draft", "sent", "to approve"):
+            return "見積依頼書"
+        return "発注書"
+
+    def _l10n_jp_report_title(self):
+        self.ensure_one()
+        candidates = [
+            getattr(self, "partner_ref", False),
+            getattr(self, "origin", False),
+            self.name,
+        ]
+        for candidate in candidates:
+            if candidate:
+                return candidate
+        return ""
+
+    def _get_report_base_filename(self):
+        self.ensure_one()
+        base_filename = super()._get_report_base_filename()
+        doc_label = self._l10n_jp_report_document_label()
+        partner_label = self._l10n_jp_vendor_label()
+        title = self._l10n_jp_report_title()
+        filename = build_pdf_filename(doc_label, partner_label, title)
+        return filename or base_filename
 
     @staticmethod
     def _l10n_jp_map_account_type(value):

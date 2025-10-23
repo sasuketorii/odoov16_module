@@ -20,6 +20,7 @@
     "assets": {
         "web.assets_backend": [
             "acoona_branding/static/src/scss/debranding.scss",
+            "acoona_branding/static/src/js/menu_hide_apps.js",
         ]
     }
 }
