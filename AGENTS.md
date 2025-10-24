@@ -49,7 +49,7 @@ addons/
     │   └── ir.model.access.csv
     ├── data/
     ├── i18n/
-    │   └── ja.po
+    │   └── ja_JP.csv
     ├── static/
     │   ├── src/js/
     │   ├── src/scss/
@@ -60,7 +60,7 @@ addons/
 
 - モジュール名は `snake_case`。新規モデルは `_name = 'x_module.model'` 形式で命名。
 - `__manifest__.py` の `depends` は最小限とし、`assets` 更新時はパス漏れに注意。
-- セキュリティ定義 (`ir.model.access.csv`) と翻訳 (`i18n/ja.po`) を必ず整備。
+- セキュリティ定義 (`ir.model.access.csv`) と翻訳 (`i18n/ja_JP.csv`) を必ず整備。
 
 ---
 
@@ -87,7 +87,7 @@ addons/
 
 ### データ・翻訳
 - XML データファイルは `noupdate` フラグを目的に応じて設定。
-- 翻訳文字列は `i18n/ja.po` に集約し、`odoo --i18n-export`/`--i18n-import` コマンドで同期。
+- 翻訳文字列は `i18n/ja_JP.csv` に集約し、`odoo --i18n-export`/`--i18n-import` コマンドで同期。
 - データ更新で過去情報を上書きする場合はバックアップ手順を README 等に記載。
 
 ---

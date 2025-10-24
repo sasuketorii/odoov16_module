@@ -3,8 +3,43 @@ $jp-accent-color: #2f6ae3;
 $jp-light-color: #f1f5ff;
 $jp-text-color: #222222;
 
+@font-face {
+  font-family: 'Acoona Noto Sans JP';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/acoona_l10n_jp_invoice_system/static/src/fonts/NotoSansJP-Regular.ttf') format('truetype'), local('Noto Sans CJK JP Regular'), local('Noto Sans JP Regular');
+}
+
+@font-face {
+  font-family: 'Acoona Noto Sans JP';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/acoona_l10n_jp_invoice_system/static/src/fonts/NotoSansJP-Medium.ttf') format('truetype'), local('Noto Sans CJK JP Medium'), local('Noto Sans JP Medium');
+}
+
+@font-face {
+  font-family: 'Acoona Noto Sans JP';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/acoona_l10n_jp_invoice_system/static/src/fonts/NotoSansJP-Bold.ttf') format('truetype'), local('Noto Sans CJK JP Bold'), local('Noto Sans JP Bold');
+}
+
+@font-face {
+  font-family: 'Acoona Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/acoona_l10n_jp_invoice_system/static/src/fonts/NotoSansJP-Bold.ttf') format('truetype'), local('Noto Sans CJK JP Bold'), local('Noto Sans JP Bold');
+}
+
+body,
+body *,
+.o_report_layout_standard,
+.o_report_layout_standard * {
+  font-family: 'Acoona Noto Sans JP', 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif !important;
+}
+
 .jp-invoice {
-  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+  font-family: 'Acoona Noto Sans JP', 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
   color: $jp-text-color;
   font-size: 11pt;
   line-height: 1.5;

@@ -257,7 +257,7 @@ docker compose logs -f odoo      # ログ監視（Ctrl+C で離脱）
 
 ## 翻訳・ドキュメント運用
 
-- **翻訳ファイル**: `odoo16_base_ja.po`, `addons_mail_ja.po`, 各モジュールの `i18n/ja.po` に集約。
+- **翻訳ファイル**: `odoo16_base_ja.po`, `addons_mail_ja.po`, 各モジュールの `i18n/ja_JP.csv` に集約。
 - **作業フロー**:
   1. `odoo --i18n-export` で最新用語を抽出。
   2. `translation_prompt.md` を使い AI 補助で一次案を作成。

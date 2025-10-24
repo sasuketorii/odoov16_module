@@ -83,7 +83,7 @@
    - `res.company` へ敬称、リード文、手数料文言、備考テンプレートを追加。
    - `res.config.settings` ビューで編集可能にし、既存 Acoona 項目と統合。
 4. **翻訳**
-   - `i18n/ja.po` に新規ラベルを追加。英語版も必要なら `en.po` を用意。
+   - `i18n/ja_JP.csv` に新規ラベルを追加。英語版も必要なら `en.po` を用意。
 5. **テスト**
    - `tests/test_invoice_layout_jp.py` に `SavepointCase` で PDF レンダリングと表示値を検証するテストを実装。
 

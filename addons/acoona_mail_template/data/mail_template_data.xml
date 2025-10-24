@@ -139,7 +139,7 @@
         <field name="name">JP: 仕入発注-オーダー</field>
         <field name="subject">JP: 仕入発注-オーダー</field>
         <field name="model_id" ref="purchase.model_purchase_order"/>
-        <field name="description">仕入先に購買オーダを添付で送信済</field>
+        <field name="description">仕入先に仕入発注を添付で送信済</field>
         <field name="auto_delete" eval="True"/>
         <field name="report_template" ref="purchase.report_purchase_quotation"/>
         <field name="body_html" type="html">
