@@ -2,7 +2,7 @@
 {
     "name": "Acoona Mail Templates",
     "summary": "日本語ローカライズ済みメールテンプレート集",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.1.0",
     "category": "Localization",
     "author": "Acoona",
     "website": "https://acoona.jp",
