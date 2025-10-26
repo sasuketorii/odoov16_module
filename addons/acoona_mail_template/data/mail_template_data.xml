@@ -141,7 +141,8 @@
         <field name="model_id" ref="purchase.model_purchase_order"/>
         <field name="description">仕入先に仕入発注を添付で送信済</field>
         <field name="auto_delete" eval="True"/>
-        <field name="report_template" ref="purchase.report_purchase_quotation"/>
+        <!-- 正: 発注書メールは発注書アクションを添付（JPレイアウトは purchase.action_report_purchase_order を当社モジュールで上書き） -->
+        <field name="report_template" ref="purchase.action_report_purchase_order"/>
         <field name="body_html" type="html">
             <div style="margin: 0px; padding: 0px;">
                 <p style="box-sizing:border-box;margin: 0px; padding: 0px; font-size: 13px;">
